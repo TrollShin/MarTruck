@@ -4,12 +4,12 @@ using UnityEngine;
 
 public struct SStoreInfo
 {
-    List<Quest> QuestList;
+    List<SQuest> QuestList;
     EStoreLV StoreLV;
 
-    SStoreInfo(List<Quest> QuestList, EStoreLV StoreLV)
+    SStoreInfo(List<SQuest> QuestList, EStoreLV StoreLV)
     {
-        this.QuestList = QuestList.ToArray().Clone() as List<Quest>;
+        this.QuestList = QuestList.ToArray().Clone() as List<SQuest>;
         this.StoreLV = StoreLV;
     }
 
