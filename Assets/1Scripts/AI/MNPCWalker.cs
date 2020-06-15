@@ -3,36 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class MNPCMove : MonoBehaviour
+public class MNPCWalker : MonoBehaviour
 {
-    private Transform Destination;
-    
+    private Vector3 Destination;
+
     private NavMeshAgent Agent;
 
-    private void Start()
+    private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Debug.Log(Agent);
 
-        Destination = new GameObject().transform;
+        Destination = new Vector3();  
     }
 
     public void Init(Transform AgentPosition, Transform Destination)
     {
         transform.position = AgentPosition.position;
-        this.Destination = Destination;
-
-        Move();
+        this.Destination = Destination.position;
     }
 
     public void Init(Vector3 AgentPosition, Vector3 Destination)
     {
         transform.position = AgentPosition;
-        this.Destination.position = Destination;
+        this.Destination = Destination;
     }
 
-    private void Move()
+    public void SetDestination(Vector3 Destination)
     {
-        Agent.SetDestination(Destination.position);
+        this.Destination = Destination;
+    }
+
+    public void Move()
+    {
+        Agent.SetDestination(Destination);
     }
 }
