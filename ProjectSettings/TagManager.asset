@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destination
+  - LeftTire
+  - RightTire
   layers:
   - Default
   - TransparentFX
