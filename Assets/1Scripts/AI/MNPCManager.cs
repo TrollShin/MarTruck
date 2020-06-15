@@ -17,6 +17,4 @@ public class MNPCManager : MonoBehaviour
             Destinations[i] = ParentDestination.GetChild(i).gameObject;
         }
     }
-
-    private void 
 }
