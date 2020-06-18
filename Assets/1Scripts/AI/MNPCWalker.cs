@@ -1,41 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MNPCWalker : MonoBehaviour
 {
-    private Vector3 Destination;
+    public delegate Transform NPCEvent(Transform NPC);
+
+    public event NPCEvent OnAgentArrive;
 
     private NavMeshAgent Agent;
+    private WaitForSeconds CheckDelayTime;
+    private Coroutine CheckCoroutine;
+    
 
-    private void Awake()
+    private void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-        Debug.Log(Agent);
 
-        Destination = new Vector3();  
+        CheckDelayTime = new WaitForSeconds(2.5f);
+
+        CheckCoroutine = StartCoroutine(CheckAgentArrive());
     }
 
-    public void Init(Transform AgentPosition, Transform Destination)
+    public void SetDestination(Transform _Transform)
     {
-        transform.position = AgentPosition.position;
-        this.Destination = Destination.position;
+        Debug.Log(_Transform.position);
+        Agent.SetDestination(_Transform.position);
     }
 
-    public void Init(Vector3 AgentPosition, Vector3 Destination)
+    IEnumerator CheckAgentArrive()
     {
-        transform.position = AgentPosition;
-        this.Destination = Destination;
-    }
+        yield return CheckDelayTime;
 
-    public void SetDestination(Vector3 Destination)
-    {
-        this.Destination = Destination;
-    }
+        if(Vector3.Distance(transform.position, Agent.destination) < 3)
+        {
+            SetDestination(OnAgentArrive?.Invoke(transform));
+        }
 
-    public void Move()
-    {
-        Agent.SetDestination(Destination);
+        CheckCoroutine = StartCoroutine(CheckAgentArrive());
     }
 }
