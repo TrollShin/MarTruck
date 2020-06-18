@@ -70,10 +70,10 @@ public class MCar : MonoBehaviour
             {
                 Wheel.brakeTorque = HandBrake;
 
-                if (GetComponent<Rigidbody>().velocity.magnitude * 3.6 > CarInfo.MaxAngle)
+                if (GetComponent<Rigidbody>().velocity.magnitude * 3.6 > CarInfo.MaxSpeed)
                 {
                     Vector3 VelocityUnit = GetComponent<Rigidbody>().velocity.normalized; // normalized 로 단위 벡터(1의 길이를 가진 벡터)를 받고
-                    GetComponent<Rigidbody>().velocity = VelocityUnit * CarInfo.MaxAngle / 3.6f; // 단위 벡터에 최고속도만큼의 값을 곱해서 rigidbody 의 velocity를 고정
+                    GetComponent<Rigidbody>().velocity = VelocityUnit * CarInfo.MaxSpeed / 3.6f; // 단위 벡터에 최고속도만큼의 값을 곱해서 rigidbody 의 velocity를 고정
                 }
                 else
                 {
