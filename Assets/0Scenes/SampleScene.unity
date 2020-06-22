@@ -589,6 +589,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Truck
       objectReference: {fileID: 0}
+    - target: {fileID: 7926989693576759081, guid: e189309386c20844eac070ea0eb829c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926989693576759082, guid: e189309386c20844eac070ea0eb829c0,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7926989693576759085, guid: e189309386c20844eac070ea0eb829c0,
         type: 3}
       propertyPath: m_LocalPosition.x
