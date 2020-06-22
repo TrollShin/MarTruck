@@ -1,32 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System;
 using UnityEngine;
 
 [System.Serializable]
 public struct SCarInfo
 {
+    public float MaxFuel;
     public float MaxSpeed;
     public float Acceleration;
     public float Friction;
     public float Braking;
     public float MaxAngle;
 
-    SCarInfo(float MaxSpeed, float Acceleration, float Friction, float Braking, float MaxAngle)
+    internal float Fuel;
+
+    SCarInfo(float MaxFuel, float MaxSpeed, float Acceleration, float Friction, float Braking, float MaxAngle, float Fuel)
     {
+        this.MaxFuel = MaxFuel;
         this.MaxSpeed = MaxSpeed;
         this.Acceleration = Acceleration;
         this.Friction = Friction;
         this.Braking = Braking;
         this.MaxAngle = MaxAngle;
+        this.Fuel = Fuel;
     }
 
     SCarInfo(SCarInfo CarInfo)
     {
+        /*
+        Type type = typeof(SCarInfo);
+
+        foreach(FieldInfo field in type.GetFields())
+        {
+            field.SetValue(this, field.GetValue(CarInfo));
+        }
+        */
+
         this.MaxSpeed = CarInfo.MaxSpeed;
         this.Acceleration = CarInfo.Acceleration;
         this.Friction = CarInfo.Friction;
         this.Braking = CarInfo.Braking;
         this.MaxAngle = CarInfo.MaxAngle;
+        this.MaxFuel = CarInfo.MaxFuel;
+        this.Fuel = CarInfo.Fuel;
     }
 }
 
@@ -37,6 +55,11 @@ public class MCar : MonoBehaviour
     public GameObject WheelShape;
 
     private WheelCollider[] ColliderWheels;
+
+    private void Awake()
+    {
+        CarInfo.Fuel = CarInfo.MaxFuel;
+    }
 
     void Start()
     {
@@ -56,6 +79,8 @@ public class MCar : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(CarInfo.Fuel);
+
         float Angle = CarInfo.MaxAngle * Input.GetAxis("Horizontal");
         float Torque = CarInfo.Acceleration * Input.GetAxis("Vertical");
 
@@ -79,6 +104,11 @@ public class MCar : MonoBehaviour
                 {
                     Wheel.motorTorque = Torque;
                 }
+            }
+
+            if(Torque > 0)
+            {
+                CarInfo.Fuel -= Torque * 0.001f;
             }
 
             if (WheelShape)

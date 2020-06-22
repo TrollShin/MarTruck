@@ -9,48 +9,61 @@ public class MDriftCamera : MonoBehaviour
         public bool updateCameraInUpdate;
         public bool updateCameraInFixedUpdate = true;
         public bool updateCameraInLateUpdate;
-        public KeyCode switchViewKey = KeyCode.Space;
     }
+
+    public GameObject Car;
 
     public float smoothing = 6f;
     public Transform lookAtTarget;
     public Transform positionTarget;
-    public Transform sideView;
+    public Transform basicPosTarget;
     public AdvancedOptions advancedOptions;
 
-    bool m_ShowingSideView;
+    private float RotationSpeed = 0.1f;
+    private Vector3 beforePos;
 
-    private void FixedUpdate ()
+    private void FixedUpdate()
     {
-        if(advancedOptions.updateCameraInFixedUpdate)
-            UpdateCamera ();
+        if (advancedOptions.updateCameraInFixedUpdate)
+            UpdateCamera();
     }
 
-    private void Update ()
+    private void Update()
     {
-        if (Input.GetKeyDown (advancedOptions.switchViewKey))
-            m_ShowingSideView = !m_ShowingSideView;
-
-        if(advancedOptions.updateCameraInUpdate)
-            UpdateCamera ();
+        if (advancedOptions.updateCameraInUpdate)
+            UpdateCamera();
     }
 
-    private void LateUpdate ()
+    private void LateUpdate()
     {
-        if(advancedOptions.updateCameraInLateUpdate)
-            UpdateCamera ();
+        if (advancedOptions.updateCameraInLateUpdate)
+            UpdateCamera();
     }
 
-    private void UpdateCamera ()
+    private void UpdateCamera()
     {
-        if (m_ShowingSideView)
+        if (Input.GetMouseButton(1))
         {
-            transform.position = sideView.position;
-            transform.rotation = sideView.rotation;
+            if (beforePos == Vector3.zero)
+            {
+                beforePos = Input.mousePosition;
+            }
+
+            if (beforePos != Vector3.zero)
+            {
+                positionTarget.transform.RotateAround(positionTarget.parent.position, Vector3.down, (beforePos.x - Input.mousePosition.x) * Time.deltaTime * RotationSpeed);
+            }
+
+            transform.position = positionTarget.position; //Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+            transform.LookAt(positionTarget.parent);
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+            beforePos = Vector3.zero;
+
+            transform.position = Vector3.Lerp(transform.position, basicPosTarget.position, Time.deltaTime * smoothing);
+            positionTarget.position = basicPosTarget.position;
+
             transform.LookAt(lookAtTarget);
         }
     }

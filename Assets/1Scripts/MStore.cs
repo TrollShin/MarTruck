@@ -58,13 +58,21 @@ public class MStore : MonoBehaviour
         Store[(int)StoreInfo.StoreLV].SetActive(true);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            StoreUpgrade();
+        }
+    }
+
     private void SetCamera(GameObject Car)
     {
         Transform CamRig = Car.transform.Find("CamRig");
 
         driftCamera.lookAtTarget = CamRig.Find("CamLookAtTarget");
         driftCamera.positionTarget = CamRig.Find("CamPosition");
-        driftCamera.sideView = CamRig.Find("CamSidePosition");
+        driftCamera.basicPosTarget = CamRig.Find("CamBasic");
     }
 
     private void StoreUpgrade()
