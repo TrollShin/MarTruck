@@ -4,16 +4,16 @@ using UnityEngine;
 
 public struct SStoreInfo
 {
-    public List<SQuest> QuestList;
-    public EStoreLV StoreLV;
+    List<SQuest> QuestList;
+    EStoreLV StoreLV;
 
-    public SStoreInfo(List<SQuest> QuestList, EStoreLV StoreLV)
+    SStoreInfo(List<SQuest> QuestList, EStoreLV StoreLV)
     {
         this.QuestList = QuestList.ToArray().Clone() as List<SQuest>;
         this.StoreLV = StoreLV;
     }
 
-    public SStoreInfo(SStoreInfo StoreInfo)
+    SStoreInfo(SStoreInfo StoreInfo)
     {
         this.QuestList = StoreInfo.QuestList;
         this.StoreLV = StoreInfo.StoreLV;
@@ -29,6 +29,7 @@ public enum EStoreLV
 
 public class MStore : MonoBehaviour
 {
+<<<<<<< HEAD
     private SStoreInfo StoreInfo;
 
     public GameObject[] Car;
@@ -73,18 +74,17 @@ public class MStore : MonoBehaviour
         driftCamera.lookAtTarget = CamRig.Find("CamLookAtTarget");
         driftCamera.positionTarget = CamRig.Find("CamPosition");
         driftCamera.basicPosTarget = CamRig.Find("CamBasic");
+=======
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+>>>>>>> 70b9a2fc644457c6ee6d8ae555b77984af815c67
     }
 
-    private void StoreUpgrade()
+    // Update is called once per frame
+    void Update()
     {
-        Car[(int)StoreInfo.StoreLV].SetActive(false);
-        Store[(int)StoreInfo.StoreLV].SetActive(false);
-
-        StoreInfo.StoreLV += 1;
-
-        Car[(int)StoreInfo.StoreLV].SetActive(true);
-        Store[(int)StoreInfo.StoreLV].SetActive(true);
-
-        SetCamera(Car[(int)StoreInfo.StoreLV]);
+        
     }
 }
