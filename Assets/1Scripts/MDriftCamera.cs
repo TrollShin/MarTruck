@@ -12,13 +12,15 @@ public class MDriftCamera : MonoBehaviour
     }
 
     public float smoothing = 6f;
-    public Transform lookAtTarget;
+
     public Transform positionTarget;
-    public Transform basicPosTarget;
+    public Transform CamAxis;
+
     public AdvancedOptions advancedOptions;
 
-    private float RotationSpeed = 0.1f;
-    private Vector3 beforePos;
+    private float RotationSpeed = 6f;
+
+    private Vector3 Gap;               // 회전 축적 값.
 
     private void FixedUpdate()
     {
@@ -38,31 +40,19 @@ public class MDriftCamera : MonoBehaviour
             UpdateCamera();
     }
 
+
     private void UpdateCamera()
     {
-        if (Input.GetMouseButton(1))
-        {
-            if (beforePos == Vector3.zero)
-            {
-                beforePos = Input.mousePosition;
-            }
+        transform.position = Vector3.Lerp(transform.position, positionTarget.position, smoothing * Time.deltaTime); //positionTarget.position;
+        transform.LookAt(CamAxis);
 
-            if (beforePos != Vector3.zero)
-            {
-                positionTarget.transform.RotateAround(positionTarget.parent.position, Vector3.down, (beforePos.x - Input.mousePosition.x) * Time.deltaTime * RotationSpeed);
-            }
+        // 값을 축적.
+        Gap.x += Input.GetAxis("Mouse Y") * RotationSpeed * -1;
+        Gap.y += Input.GetAxis("Mouse X") * RotationSpeed;
 
-            transform.position = positionTarget.position; //Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
-            transform.LookAt(positionTarget.parent);
-        }
-        else
-        {
-            beforePos = Vector3.zero;
+        // 카메라 회전범위 제한.
+        Gap.x = Mathf.Clamp(Gap.x, -5f, 70f);
 
-            transform.position = Vector3.Lerp(transform.position, basicPosTarget.position, Time.deltaTime * smoothing);
-            positionTarget.position = basicPosTarget.position;
-
-            transform.LookAt(lookAtTarget);
-        }
+        CamAxis.transform.localEulerAngles = Gap;
     }
 }

@@ -764,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591343021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 16.99, y: 2.27, z: -87.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -783,9 +783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 6
-  lookAtTarget: {fileID: 0}
   positionTarget: {fileID: 0}
-  basicPosTarget: {fileID: 0}
+  CamAxis: {fileID: 0}
   advancedOptions:
     updateCameraInUpdate: 0
     updateCameraInFixedUpdate: 1
