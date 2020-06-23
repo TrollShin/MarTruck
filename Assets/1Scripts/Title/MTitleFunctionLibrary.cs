@@ -16,7 +16,7 @@ public class MTitleFunctionLibrary : MonoBehaviour
 
     public void OnClickSetting()
     {
-
+        CSceneFunctionLibrary.ShowSettingMenu();
     }
 
     public void OnClickExit()

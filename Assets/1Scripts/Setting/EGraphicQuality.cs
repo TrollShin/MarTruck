@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets._1Scripts.Setting
+public enum EGraphicQuality
 {
-    enum EGraphicQuality
-    {
-        VeryLow,
-        Low,
-        Medium,
-        High,
-        VeryHigh,
-        Ultra
-    }
+    VeryLow,
+    Low,
+    Medium,
+    High,
+    VeryHigh,
+    Ultra
 }
