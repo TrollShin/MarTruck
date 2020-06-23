@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public struct SStoreInfo
@@ -33,6 +34,8 @@ public class MStore : MonoBehaviour
 
     public GameObject[] Store;
 
+    private GameObject SelectQuest;
+
     private void Start()
     {
         StoreInit();
@@ -56,6 +59,27 @@ public class MStore : MonoBehaviour
         {
             StoreUpgrade();
         }
+    }
+
+    private void ShowQuest()
+    {
+        //StoreInfo.QuestList 를 이용해 Quest 목록 띄우기 - UI 관련
+    }
+
+    private void ClickQuest()
+    {
+        SelectQuest = EventSystem.current.currentSelectedGameObject;
+        SQuest quest = SelectQuest.GetComponent<SQuest>();
+
+        //quest 사용하여 정보 띄우기 - UI 관련
+
+    }
+
+    private void AcceptQuest()
+    {
+        SQuest myQuest = SelectQuest.GetComponent<SQuest>();
+
+        //Quest 적용 - 건물 관련?
     }
 
     private void StoreUpgrade()
