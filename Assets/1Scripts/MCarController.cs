@@ -11,8 +11,7 @@ public enum ECarLV
 
 public class MCarController : MonoBehaviour
 {
-
-    ECarLV CarLV;
+    private ECarLV CarLV;
 
     private MDriftCamera driftCamera;
 
@@ -28,13 +27,11 @@ public class MCarController : MonoBehaviour
 
     private void CarInit()
     {
-        //GameData가 없다면
-
         CarLV = ECarLV.Porter;
 
-        for (int i = 0; i < gameObject.transform.childCount ; i++)
+        for (int i = 0; i < transform.childCount ; i++)
         {
-            Cars.Add(gameObject.transform.GetChild(i).gameObject);
+            Cars.Add(transform.GetChild(i).gameObject);
         }
 
         SetCar(CarLV);
