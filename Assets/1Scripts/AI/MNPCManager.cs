@@ -27,13 +27,18 @@ public class MNPCManager : MonoBehaviour
         return Destinaitons[Random.Range(0, Destinaitons.Length)];
     }
 
-    private Transform ChangeNpcDestination(Transform NPC)
+    private void ChangeNpcDestination(MNPCWalker Walker)
     {        
-        if(Vector3.Distance(NPC.position, DestinationArea.transform.position) > DestinationArea.Radius)
+        if(Vector3.Distance(Walker.transform.position, DestinationArea.transform.position) > DestinationArea.Radius)
         {
-            NPC.position = GetDestination().position;
+            Walker.transform.position = GetDestination().position;
         }
-             
-        return GetDestination();
+
+        bool isJayWalker;
+
+        if (((int)Random.Range(0, 4)) < 1) isJayWalker = true;
+        else isJayWalker = false;
+
+        Walker.SetDestination(GetDestination(), (Random.Range(0,4)) < 1);
     }
 }

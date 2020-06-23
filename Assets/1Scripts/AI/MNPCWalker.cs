@@ -6,18 +6,21 @@ using UnityEngine.AI;
 
 public class MNPCWalker : MonoBehaviour
 {
-    public delegate Transform NPCEvent(Transform NPC);
+    public delegate void NPCEvent(MNPCWalker Walker);
 
     public event NPCEvent OnAgentArrive;
 
     private NavMeshAgent Agent;
     private WaitForSeconds CheckDelayTime;
     private Coroutine CheckCoroutine;
-    
 
+    private EAreaMask OriginalyAreaMask;
+    
     private void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
+
+        OriginalyAreaMask = EAreaMask.Walkable;
 
         CheckDelayTime = new WaitForSeconds(2.5f);
 
@@ -26,7 +29,26 @@ public class MNPCWalker : MonoBehaviour
 
     public void SetDestination(Transform _Transform)
     {
-        Debug.Log(_Transform.position);
+        Agent.areaMask = (int)OriginalyAreaMask;
+
+        Agent.SetDestination(_Transform.position);
+    }
+
+    public void SetDestination(Transform _Transform, bool isJaywalker)
+    {
+        if(isJaywalker)
+        {
+            OriginalyAreaMask = EAreaMask.JayWalker;
+            Agent.speed = 5.5f;
+        }
+        else
+        {
+            OriginalyAreaMask = EAreaMask.Walkable;
+            Agent.speed = 3.5f;
+        }
+
+        Agent.areaMask = (int)OriginalyAreaMask;
+
         Agent.SetDestination(_Transform.position);
     }
 
@@ -34,9 +56,11 @@ public class MNPCWalker : MonoBehaviour
     {
         yield return CheckDelayTime;
 
-        if(Vector3.Distance(transform.position, Agent.destination) < 3)
+        if(Vector3.Distance(transform.position, Agent.destination) < 3f)
         {
-            SetDestination(OnAgentArrive?.Invoke(transform));
+            Debug.Log(Vector3.Distance(transform.position, Agent.destination).ToString());
+
+            OnAgentArrive?.Invoke(this);            
         }
 
         CheckCoroutine = StartCoroutine(CheckAgentArrive());

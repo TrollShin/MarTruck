@@ -5,8 +5,11 @@ using UnityEngine;
 public class MNPCArea : MonoBehaviour
 {
     private List<Transform> ActivedDestinations;
-    private WaitForSeconds CheckDelayTime = new WaitForSeconds(3f);
+    private WaitForSeconds CheckDelayTime;
     private Coroutine CheckDestinationCoroutine;
+
+    [SerializeField]
+    private float FloatCheckDelayTime;
 
     [Header("Search Range")]
     public float Radius;
@@ -14,6 +17,7 @@ public class MNPCArea : MonoBehaviour
     private void Awake()
     {
         ActivedDestinations = new List<Transform>();
+        CheckDelayTime = new WaitForSeconds(FloatCheckDelayTime);
     }
 
     private void CheckDestination()
