@@ -12,7 +12,7 @@ public enum ECarLV
 public class MRepairShop : MonoBehaviour
 {
     public GameObject[] Car;
-    public ECarLV CarLV;
+    ECarLV CarLV;
 
     public MDriftCamera driftCamera;
     void Start()
@@ -24,13 +24,20 @@ public class MRepairShop : MonoBehaviour
     {
         CarLV = ECarLV.Porter;
 
-        GameObject curCar = Car[(int)CarLV];
+        Car[(int)CarLV].SetActive(true);
 
-        curCar.SetActive(true);
-
-        SetCamera(curCar);
+        SetCamera(Car[(int)CarLV]);
     }
-    private void StoreUpgrade()
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CarUpgrade();
+        }
+    }
+
+    private void CarUpgrade()
     {
         Car[(int)CarLV].SetActive(false);
 

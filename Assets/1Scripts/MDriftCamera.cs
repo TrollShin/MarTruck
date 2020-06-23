@@ -11,8 +11,6 @@ public class MDriftCamera : MonoBehaviour
         public bool updateCameraInLateUpdate;
     }
 
-    public GameObject Car;
-
     public float smoothing = 6f;
     public Transform lookAtTarget;
     public Transform positionTarget;

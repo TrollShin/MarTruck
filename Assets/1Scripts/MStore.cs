@@ -31,10 +31,8 @@ public class MStore : MonoBehaviour
 {
     private SStoreInfo StoreInfo;
 
-    public GameObject[] Car;
     public GameObject[] Store;
 
-    public MDriftCamera driftCamera;
     private void Start()
     {
         StoreInit();

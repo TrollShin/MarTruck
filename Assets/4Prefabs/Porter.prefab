@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 513604700102453833}
   m_Layer: 0
-  m_Name: CamLookAtTarger
+  m_Name: CamLookAtTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
