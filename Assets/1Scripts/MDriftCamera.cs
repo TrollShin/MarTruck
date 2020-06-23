@@ -18,7 +18,7 @@ public class MDriftCamera : MonoBehaviour
 
     public AdvancedOptions advancedOptions;
 
-    private float RotationSpeed = 6f;
+    public float RotationSpeed = 6f;
 
     private Vector3 Gap;               // 회전 축적 값.
 
