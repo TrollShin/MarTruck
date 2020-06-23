@@ -28,11 +28,12 @@ public class MQualityOption : MonoBehaviour
             Options.Add(new Dropdown.OptionData(Option));
         }
         DropdownOption.AddOptions(Options);
+        DropdownOption.value = QualityLevel;
+        DropdownOption.onValueChanged.AddListener(SetOption);
     }
 
-    // Update is called once per frame
-    void Update()
+    void SetOption(int index)
     {
-        
+        QualityLevel = index;
     }
 }
