@@ -34,11 +34,6 @@ public class MNPCManager : MonoBehaviour
             Walker.transform.position = GetDestination().position;
         }
 
-        bool isJayWalker;
-
-        if (((int)Random.Range(0, 4)) < 1) isJayWalker = true;
-        else isJayWalker = false;
-
         Walker.SetDestination(GetDestination(), (Random.Range(0,4)) < 1);
     }
 }
