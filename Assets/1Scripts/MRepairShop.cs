@@ -52,8 +52,7 @@ public class MRepairShop : MonoBehaviour
     {
         Transform CamRig = Car.transform.Find("CamRig");
 
-        driftCamera.lookAtTarget = CamRig.Find("CamLookAtTarget");
-        driftCamera.positionTarget = CamRig.Find("CamPosition");
-        driftCamera.basicPosTarget = CamRig.Find("CamBasic");
+        driftCamera.CamAxis = CamRig;
+        driftCamera.positionTarget = CamRig.GetChild(0);
     }
 }
