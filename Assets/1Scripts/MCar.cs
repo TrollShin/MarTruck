@@ -79,8 +79,6 @@ public class MCar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(CarInfo.Fuel);
-
         float Angle = CarInfo.MaxAngle * Input.GetAxis("Horizontal");
         float Torque = CarInfo.Acceleration * Input.GetAxis("Vertical");
 
