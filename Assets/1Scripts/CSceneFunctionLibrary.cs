@@ -20,7 +20,11 @@ public class CSceneFunctionLibrary
         */
     public static void ShowSettingMenu()
     {
-        SceneManager.LoadScene("Setting", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
+    }
+
+    private static void ShowSettingMenu_completed(AsyncOperation obj)
+    {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Setting")); // Must be Active Scene for instantiate prefabs
     }
 }

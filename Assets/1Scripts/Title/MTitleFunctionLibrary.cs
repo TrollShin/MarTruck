@@ -21,6 +21,6 @@ public class MTitleFunctionLibrary : MonoBehaviour
 
     public void OnClickExit()
     {
-
+        Application.Quit();
     }
 }
