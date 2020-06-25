@@ -16,12 +16,11 @@ public class MResolutionOption : MDropdownOption
             options.Add(resolution.ToString());
             if (resolution.width == Screen.currentResolution.width 
                 && resolution.height == Screen.currentResolution.height 
-                && (currentRefreshRate - 1 <= resolution.refreshRate || resolution.refreshRate <= currentRefreshRate + 1))
+                && (currentRefreshRate - 1 <= resolution.refreshRate || resolution.refreshRate <= currentRefreshRate + 1)) //Refresh rate has +-1 margin
                 value = i;
         }
         DropdownOption.AddOptions(options);
         DropdownOption.value = value;
-        GameObject.Find("Debug").GetComponent<Text>().text = Screen.currentResolution.ToString() + ", " + value;
         
     }
 

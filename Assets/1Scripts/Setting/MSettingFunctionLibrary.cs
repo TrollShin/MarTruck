@@ -1,33 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public struct SOptionType
+{
+    public Button button;
+    public GameObject Options;
+}
 
 public class MSettingFunctionLibrary : MonoBehaviour
 {
-    public GameObject Content;
+    public SOptionType[] OptionTypes;
+    private GameObject Activated;
 
-    public void OnClickGraphic()
+    private void Awake()
     {
-        /*
-        GameObject GraphicOptions = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/4Prefabs/UI/Setting/GraphicOptions.prefab");
-        Content.transform.DetachChildren();
-        GraphicOptions.transform.SetParent(Content.transform);
-        */
-    }
+        foreach (SOptionType OptionType in OptionTypes)
+        {
+            OptionType.Options.SetActive(false);
+            OptionType.button.onClick.AddListener(()=>
+            { ShowOptions(OptionType.Options); });
+        }
 
-    public void OnClickControl()
-    {
-
-    }
-
-    public void OnClickGameplay()
-    {
-
+        Activated = OptionTypes[0].Options;
+        OptionTypes[0].Options.SetActive(true);
     }
 
     public void OnClickExit()
     {
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+    }
+
+    private void ShowOptions(GameObject Options)
+    {
+        if(Activated != Options)
+        {
+            Activated.SetActive(false);
+            Options.SetActive(true);
+            Activated = Options;
+        }
     }
 }
