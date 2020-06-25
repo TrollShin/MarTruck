@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MResolutionOption : MDropdownOption
 {
-    protected override void InitDropdownOptions()
+    protected override void InitOption()
     {
         List<string> options = new List<string>();
         int value = -1;

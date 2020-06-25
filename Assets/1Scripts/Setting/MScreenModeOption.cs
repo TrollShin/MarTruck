@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class MScreenModeOption : MDropdownOption
 {
-    protected override void InitDropdownOptions()
+    protected override void InitOption()
     {
         string[] options = typeof(FullScreenMode).GetEnumNames();
         DropdownOption.AddOptions(options.ToList());

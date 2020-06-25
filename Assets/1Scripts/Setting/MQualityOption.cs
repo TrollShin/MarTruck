@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MQualityOption : MDropdownOption
 {
-    protected override void InitDropdownOptions()
+    protected override void InitOption()
     {
         List<Dropdown.OptionData> Options = new List<Dropdown.OptionData>();
         foreach (string Option in typeof(EGraphicQuality).GetEnumNames())
