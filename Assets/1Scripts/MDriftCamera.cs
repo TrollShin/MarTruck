@@ -45,8 +45,8 @@ public class MDriftCamera : MonoBehaviour
         transform.LookAt(CamAxis);
 
         // 값을 축적.
-        Gap.x += Input.GetAxis("Mouse Y") * CGameInputManager.instance.RotationSensitivity * -1;
-        Gap.y += Input.GetAxis("Mouse X") * CGameInputManager.instance.RotationSensitivity * (int)CGameInputManager.instance.MouseReversal;
+        Gap.x += Input.GetAxis("Mouse Y") * CGameInputManager.GetInstance().RotationSensitivity * -1;
+        Gap.y += Input.GetAxis("Mouse X") * CGameInputManager.GetInstance().RotationSensitivity * (int)CGameInputManager.GetInstance().MouseReversal;
 
         // 카메라 회전범위 제한.
         Gap.x = Mathf.Clamp(Gap.x, -5f, 70f);
