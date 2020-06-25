@@ -18,8 +18,6 @@ public class MDriftCamera : MonoBehaviour
 
     public AdvancedOptions advancedOptions;
 
-    public float RotationSpeed = 6f;
-
     private Vector3 Gap;               // 회전 축적 값.
 
     private void FixedUpdate()
@@ -47,8 +45,8 @@ public class MDriftCamera : MonoBehaviour
         transform.LookAt(CamAxis);
 
         // 값을 축적.
-        Gap.x += Input.GetAxis("Mouse Y") * RotationSpeed * -1;
-        Gap.y += Input.GetAxis("Mouse X") * RotationSpeed;
+        Gap.x += Input.GetAxis("Mouse Y") * CGameInputManager.instance.RotationSensitivity * -1;
+        Gap.y += Input.GetAxis("Mouse X") * CGameInputManager.instance.RotationSensitivity * (int)CGameInputManager.instance.MouseReversal;
 
         // 카메라 회전범위 제한.
         Gap.x = Mathf.Clamp(Gap.x, -5f, 70f);
