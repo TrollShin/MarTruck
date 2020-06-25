@@ -8,20 +8,18 @@ public enum EMouseReversal
     Reverse = -1,
 }
 
-public class CGameInputManager : MonoBehaviour
+public class CGameInputManager
 {
-    public static CGameInputManager instance = null;
-    private void Awake()
+    private static CGameInputManager instance = null;
+    
+    public static CGameInputManager GetInstance()
     {
-        if (instance == null)
+        if(instance == null)
         {
-            instance = this;
+            instance = new CGameInputManager();
         }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        //DontDestroyOnLoad(gameObject);
+
+        return instance;
     }
 
     public float RotationSensitivity = 6f;
