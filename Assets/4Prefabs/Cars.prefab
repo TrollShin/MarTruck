@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minimap_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2669869721904381653, guid: 7ddf9d73fb7a19747a2939a6dab98464,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2987137840883510809, guid: 7ddf9d73fb7a19747a2939a6dab98464,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -147,6 +152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minimap_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2669869721904381653, guid: 7ddf9d73fb7a19747a2939a6dab98464,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2987137840883510809, guid: 7ddf9d73fb7a19747a2939a6dab98464,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,6 +225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Minimap_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669869721904381653, guid: 7ddf9d73fb7a19747a2939a6dab98464,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2987137840883510809, guid: 7ddf9d73fb7a19747a2939a6dab98464,
         type: 3}

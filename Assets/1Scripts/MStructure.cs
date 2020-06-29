@@ -4,12 +4,12 @@ using UnityEngine;
 
 public struct SQuest
 {
-    string Name;
-    bool IsSuccess;
-    int Reward;
-    string Description;
+    public string Name;
+    public bool IsSuccess;
+    public int Reward;
+    public string Description;
 
-    SQuest(string Name, bool IsSuccess, int Reward, string Description)
+    public SQuest(string Name, bool IsSuccess, int Reward, string Description)
     {
         this.Name = Name;
         this.IsSuccess = IsSuccess;
@@ -17,7 +17,7 @@ public struct SQuest
         this.Description = Description;
     }
 
-    SQuest(SQuest Quest)
+    public SQuest(SQuest Quest)
     {
         this.Name = Quest.Name;
         this.IsSuccess = Quest.IsSuccess;
