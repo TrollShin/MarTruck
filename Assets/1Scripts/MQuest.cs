@@ -7,7 +7,7 @@ public class MQuest : MonoBehaviour
 
     public List<SQuest> QuestList = new List<SQuest>();
 
-    private float CreateTime = 3f;
+    private float CreateTime = 60f;
 
     private void Start()
     {

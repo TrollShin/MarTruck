@@ -1,5 +1,5 @@
 ﻿public enum EAreaMask
 {
     Walkable = 1,
-    JayWalker = 17,
+    Walkable_CrossWalk = 17,
 }

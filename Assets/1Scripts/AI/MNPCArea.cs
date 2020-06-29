@@ -12,6 +12,8 @@ public class MNPCArea : MonoBehaviour
     private float FloatCheckDelayTime;
 
     [Header("Search Range")]
+    [Tooltip("Search Range")]
+    [Range(40,150)]
     public float Radius;
 
     private void Awake()
