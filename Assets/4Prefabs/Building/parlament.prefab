@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6272473278355421234}
   - component: {fileID: 6272473278356421362}
   - component: {fileID: 6272473278349285362}
+  - component: {fileID: 1722627070588032400}
   m_Layer: 0
   m_Name: parlament
   m_TagString: Untagged
@@ -106,3 +107,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1722627070588032400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272473278358676530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.095393, y: 1.7218443, z: 9.1576605}
+  m_Center: {x: -2.1575017, y: 0.86092216, z: 2.199244}

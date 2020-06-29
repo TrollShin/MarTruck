@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 416929817132369684}
   - component: {fileID: 416929817131271636}
   - component: {fileID: 416929817138768084}
+  - component: {fileID: 7747784898810044240}
   m_Layer: 0
   m_Name: food_factory
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &7747784898810044240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416929817129278228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4412832, y: 1.5427518, z: 3.2601066}
+  m_Center: {x: -0.82237154, y: 0.7713759, z: 1.1944644}
