@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5221991773473487033}
   - component: {fileID: 5221991773474617977}
   - component: {fileID: 5221991773462894457}
+  - component: {fileID: 6230898996173233132}
   m_Layer: 0
   m_Name: bookstore
   m_TagString: Untagged
@@ -103,3 +104,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &6230898996173233132
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221991773472416953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6613108, y: 1.1750573, z: 1.4569567}
+  m_Center: {x: 0, y: 0.58752865, z: -0.15110442}

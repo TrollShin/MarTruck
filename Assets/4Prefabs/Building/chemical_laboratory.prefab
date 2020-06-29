@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3027819372731517066}
   - component: {fileID: 3027819372730387018}
   - component: {fileID: 3027819372721203018}
+  - component: {fileID: 472891704379761829}
   m_Layer: 0
   m_Name: chemical_laboratory
   m_TagString: Untagged
@@ -103,3 +104,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &472891704379761829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3027819372728456330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1770973, y: 1.2248175, z: 3.4679306}
+  m_Center: {x: -1.0863249, y: 0.6069677, z: 1.1074413}
