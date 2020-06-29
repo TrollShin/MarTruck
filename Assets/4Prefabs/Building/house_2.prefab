@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8583301667432747835}
   - component: {fileID: 8583301667431748091}
   - component: {fileID: 8583301667443342587}
+  - component: {fileID: -6862856066786096780}
   m_Layer: 0
   m_Name: house_2
   m_TagString: Untagged
@@ -104,3 +105,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &-6862856066786096780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583301667433942843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8451983, y: 0.542472, z: 1.8451983}
+  m_Center: {x: 0, y: 0.271236, z: 0}

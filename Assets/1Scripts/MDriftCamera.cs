@@ -41,8 +41,8 @@ public class MDriftCamera : MonoBehaviour
 
     private void UpdateCamera()
     {
-        transform.position = Vector3.Lerp(transform.position, positionTarget.position, smoothing * Time.deltaTime); //positionTarget.position;
-        transform.LookAt(CamAxis);
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, positionTarget.position, smoothing * Time.deltaTime); //positionTarget.position;
+        Camera.main.transform.LookAt(CamAxis);
 
         // 값을 축적.
         Gap.x += Input.GetAxis("Mouse Y") * CGameInputManager.GetInstance().RotationSensitivity * -1;

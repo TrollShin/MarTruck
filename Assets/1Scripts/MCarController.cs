@@ -19,7 +19,7 @@ public class MCarController : MonoBehaviour
 
     void Start()
     {
-        driftCamera = Camera.main.GetComponent<MDriftCamera>();
+        driftCamera = GetComponent<MDriftCamera>();
 
         CarInit();
         MRepairShop.EventUpgradeCar += UpgradeCar;
