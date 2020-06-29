@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class MNPCWalker : MonoBehaviour
 {
-    public delegate void NPCEvent(MNPCWalker Walker);
+    public delegate void NPCEvent(MNPCWalker _Walker);
 
     public event NPCEvent OnAgentArrive;
 
@@ -15,10 +15,12 @@ public class MNPCWalker : MonoBehaviour
     private Coroutine CheckCoroutine;
 
     private EAreaMask OriginalyAreaMask;
+
+    private bool IsJayWalker;
     
     private void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();        
 
         OriginalyAreaMask = EAreaMask.Walkable;
 
@@ -34,11 +36,11 @@ public class MNPCWalker : MonoBehaviour
         Agent.SetDestination(_Transform.position);
     }
 
-    public void SetDestination(Transform _Transform, bool isJaywalker)
+    public void SetDestination(Transform _Transform, bool _IsJaywalker)
     {
-        if(isJaywalker)
+        if(_IsJaywalker)
         {
-            OriginalyAreaMask = EAreaMask.JayWalker;
+            OriginalyAreaMask = EAreaMask.Walkable_CrossWalk;
             Agent.speed = 5.5f;
         }
         else
@@ -47,9 +49,21 @@ public class MNPCWalker : MonoBehaviour
             Agent.speed = 3.5f;
         }
 
+        IsJayWalker = _IsJaywalker;
+
         Agent.areaMask = (int)OriginalyAreaMask;
 
         Agent.SetDestination(_Transform.position);
+    }
+
+    public void ChangeAreaMask(EAreaMask AreaMask)
+    {
+        if (IsJayWalker) return;
+
+        OriginalyAreaMask = AreaMask;
+        Agent.areaMask = (int)OriginalyAreaMask;
+
+        Agent.SetDestination(Agent.destination);
     }
 
     IEnumerator CheckAgentArrive()
@@ -58,8 +72,6 @@ public class MNPCWalker : MonoBehaviour
 
         if(Vector3.Distance(transform.position, Agent.destination) < 3f)
         {
-            Debug.Log(Vector3.Distance(transform.position, Agent.destination).ToString());
-
             OnAgentArrive?.Invoke(this);            
         }
 
