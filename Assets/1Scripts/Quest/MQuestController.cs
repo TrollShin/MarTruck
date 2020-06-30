@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MQuestController : MonoBehaviour
 {
+    public delegate void OnAddQuest(SQuest Quest);
+    public static OnAddQuest AddEvent;
 
     private GameObject SelectItem;
-
-    private float CreateTime = 3f;
-
-    private List<SQuest> QuestList = new List<SQuest>();
 
     public GameObject QuestFrame;
 
@@ -19,14 +19,14 @@ public class MQuestController : MonoBehaviour
 
     public GameObject Content;
 
-    private void Start()
+    private void Awake()
     {
-        ScrollViewInit();
-        StartCoroutine(AddQuest());
+        MQuest.LoadEvent += ScrollViewInit;
+        MQuest.AddEvent += AddScrollViewItem;
     }
 
     //시작 시 스크롤뷰 셋팅해주는 함수.
-    private void ScrollViewInit()
+    private void ScrollViewInit(List<SQuest> QuestList)
     {
         for (int i = 0; i < QuestList.Count; i++)
         {
@@ -45,33 +45,6 @@ public class MQuestController : MonoBehaviour
         index.transform.SetParent(Content.transform);
     }
 
-    //Quest 생성을 CreateTime 마다 해주는 코루틴
-    IEnumerator AddQuest()
-    {
-        while (true)
-        {
-            SQuest item = CreateQuest();
-            QuestList.Add(item);
-            AddScrollViewItem(item);
-
-            yield return new WaitForSeconds(CreateTime);
-        }
-    }
-
-    //Quest를 랜덤으로 생성해서 리턴해주는 함수.
-    private SQuest CreateQuest()
-    {
-        CQuestDBManager.GetInstance().DBCreate();
-
-        List<SQuest> temp = CQuestDBManager.GetInstance().ReadAllQuest();
-        int random = Random.Range(0, temp.Count);
-        SQuest item = new SQuest(temp[random]);
-        item.IsSuccess = false;
-        item.Reward = Random.Range(10, 51);
-
-        return item;
-    }
-
     //Quest 클릭시 퀘스트 정보를 띄워주는 함수.(UI)
     private void ClickQuest()
     {
@@ -84,9 +57,16 @@ public class MQuestController : MonoBehaviour
     }
 
     //Quest 수락시 퀘스트 적용시켜주는 함수.
-    private void AcceptQuest()
+    public void AcceptQuest()
     {
         SQuest myQuest = SelectItem.GetComponent<SQuest>();
 
+    }
+
+    public void OnClickExit()
+    {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        MQuest.LoadEvent -= ScrollViewInit;
+        MQuest.AddEvent -= AddScrollViewItem;
     }
 }
