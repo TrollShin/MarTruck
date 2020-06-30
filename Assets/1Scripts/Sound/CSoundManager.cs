@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class CSoundManager
 {
     private static CSoundManager Instance;
-    /*public static CSoundManager GetInstance()
+    public static CSoundManager GetInstance()
     {
         if(Instance == null)
         {
@@ -17,82 +17,112 @@ public class CSoundManager
         }
 
         return Instance;
-    }*/
+    }
 
-    public float EffectVolume;
-
-    public float BackgroundVolume;
-
-    private Dictionary<string, SSound> SoundList;
-
-    private AudioSource EffectPlayer
+    private float _EffectVolume = 1f;
+    public float EffectVolume
     {
         get
         {
-            if (EffectPlayer == null)
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                EffectPlayer = scene.GetRootGameObjects()[0].GetComponent<AudioSource>();
-                if(EffectPlayer == null)
-                {
-                    EffectPlayer = scene.GetRootGameObjects()[0].AddComponent<AudioSource>();
-                }
-            }
-
-            return EffectPlayer;
+            return _EffectVolume;
         }
         set
         {
-            EffectPlayer = value;
+            _EffectVolume = value;
         }
     }
 
-    private AudioSource BackgroundPlayer
+    private float _BackgroundVolume = 1f;
+    public float BackgroundVolume
     {
         get
         {
-            if (BackgroundPlayer == null)
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                BackgroundPlayer = scene.GetRootGameObjects()[0].GetComponent<AudioSource>();
-                if (BackgroundPlayer == null)
-                {
-                    BackgroundPlayer = scene.GetRootGameObjects()[0].AddComponent<AudioSource>();
-                }
-            }
-
-            return BackgroundPlayer;
+            return _BackgroundVolume;
         }
         set
         {
-            BackgroundPlayer = value;
+            _BackgroundVolume = value;
+            SoundPlayer.volume = value;
+        }
+    }
+
+    private readonly Dictionary<string, SSound> SoundMap;
+
+    private AudioSource _SoundPlayer;
+    private AudioSource SoundPlayer
+    {
+        get
+        {
+            if (_SoundPlayer == null)
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                _SoundPlayer = scene.GetRootGameObjects()[0].GetComponent<AudioSource>();
+                if(_SoundPlayer == null)
+                {
+                    _SoundPlayer = scene.GetRootGameObjects()[0].AddComponent<AudioSource>();
+                }
+
+                _SoundPlayer.loop = true;
+            }
+
+            return _SoundPlayer;
+        }
+        set
+        {
+            _SoundPlayer = value;
         }
     }
 
     public static void AddSound(SSoundInfo SoundInfo)
     {
-        if(!Instance.SoundList.Contains(new KeyValuePair<string, SSound>(SoundInfo.Id, SoundInfo.Sound)))
-            Instance.SoundList.Add(SoundInfo.Id, SoundInfo.Sound);
+        if(!HasSound(SoundInfo))
+            GetInstance().SoundMap.Add(SoundInfo.Id, SoundInfo.Sound);
     }
 
     public static void PlaySound(string Id)
     {
-        SSound Sound = Instance.SoundList[Id];
+        if (!HasSound(Id))
+            return;
+
+        CSoundManager Instance = GetInstance();
+        SSound Sound = Instance.SoundMap[Id];
+
         if(Sound.Type == ESoundType.Effect)
         {
-            Instance.EffectPlayer.PlayOneShot(Sound.Clip);
+            Instance.SoundPlayer.PlayOneShot(Sound.Clip,  Instance.EffectVolume);
         }
         else if(Sound.Type == ESoundType.Background)
         {
-            Instance.BackgroundPlayer.Stop();
-            Instance.BackgroundPlayer.clip = Sound.Clip;
-            Instance.BackgroundPlayer.Play();
+            Instance.SoundPlayer.Stop();
+            Instance.SoundPlayer.clip = Sound.Clip;
+            Instance.SoundPlayer.Play();
         }
     }
 
     public static void RemoveSound(string Id)
     {
-        Instance.SoundList.Remove(Id);
+        if (!HasSound(Id))
+            return;
+
+        CSoundManager Manager = GetInstance();
+        SSound Sound = Manager.SoundMap[Id];
+        if(!Sound.IsConstant)
+            Manager.SoundMap.Remove(Id);
+    }
+
+    private static bool HasSound(SSoundInfo SoundInfo)
+    {
+        return GetInstance().SoundMap.Keys.Contains(SoundInfo.Id);
+    }
+
+    private static bool HasSound(string Id)
+    {
+        return GetInstance().SoundMap.Keys.Contains(Id);
+    }
+
+    private static bool HasSound(SSound Sound)
+    {
+        return GetInstance().SoundMap.Values.Contains(Sound);
     }
 }
 
@@ -101,6 +131,8 @@ public struct SSound
 {
     public AudioClip Clip;
     public ESoundType Type;
+    [Tooltip("If true, It will not remove at other scene")]
+    public bool IsConstant;
 }
 
 [System.Serializable]

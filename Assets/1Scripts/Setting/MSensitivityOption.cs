@@ -9,6 +9,8 @@ public class MSensitivityOption : MSliderOption
 
     protected override void InitOption()
     {
+        SliderOption.minValue = 1;
+        SliderOption.maxValue = 100;
         float Sensitivity = CGameInputManager.GetInstance().RotationSensitivity;
         SliderOption.value = Sensitivity;
         DisplayText.text = ((int)Sensitivity).ToString();

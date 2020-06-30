@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //Sound 저장 및 삭제
-public class MSound : MonoBehaviour
+public class MSoundHolder : MonoBehaviour
 {
     public List<SSoundInfo> SoundInfoList;
 
