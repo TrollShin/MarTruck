@@ -25,6 +25,7 @@ public class MCarController : MonoBehaviour
         MRepairShop.EventUpgradeCar += UpgradeCar;
     }
 
+    //Car를 초기화해주는 함수.
     private void CarInit()
     {
         CarLV = ECarLV.Porter;
@@ -37,6 +38,7 @@ public class MCarController : MonoBehaviour
         SetCar(CarLV);
     }
 
+    //ECarLV에 맞춰 Car를 설정해주는 함수.
     private void SetCar(ECarLV lv)
     {
         for (int i = 0; i < Cars.Count; i++)
@@ -54,12 +56,14 @@ public class MCarController : MonoBehaviour
         SetCamera(Cars[(int)CarLV]);
     }
 
+    //Car를 업그레이드 하는 함수.
     private void UpgradeCar()
     {
         CarLV++;
         SetCar(CarLV);
     }
 
+    //차를 받아 카메라 셋팅해주는 함수.
     private void SetCamera(GameObject Car)
     {
         Transform CamRig = Car.transform.Find("CamRig");

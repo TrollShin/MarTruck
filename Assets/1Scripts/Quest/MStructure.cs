@@ -27,5 +27,5 @@ public struct SQuest
 }
 public class MStructure : MonoBehaviour
 {
-
+    public SQuest Quset;
 }
