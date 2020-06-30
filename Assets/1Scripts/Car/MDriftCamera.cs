@@ -38,7 +38,7 @@ public class MDriftCamera : MonoBehaviour
             UpdateCamera();
     }
 
-
+    //카메라의 위치를 설정해주는 함수. (차의 이동, 화면 전환)
     private void UpdateCamera()
     {
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, positionTarget.position, smoothing * Time.deltaTime); //positionTarget.position;

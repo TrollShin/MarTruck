@@ -23,6 +23,7 @@ public class CQuestDBManager
 
     private const string DB_NAME = "MarTruck.db";
 
+    //DB 생성하는 함수.
     public void DBCreate()
     {
         string filePath = Application.dataPath + "/" + DB_NAME;
@@ -33,6 +34,7 @@ public class CQuestDBManager
         }
     }
 
+    //DB 경로 리턴하는 함수. (string)
     public string GetDBFilePath()
     {
         string filePath = "URI=file:" + Application.dataPath + "/" + DB_NAME;
@@ -40,6 +42,7 @@ public class CQuestDBManager
         return filePath;
     }
 
+    //DB 연결을 확인하는 함수.
     public bool DBConnectionCheck()
     {
         try
@@ -60,6 +63,7 @@ public class CQuestDBManager
         return false;
     }
 
+    //DB에 Quest 테이블의 모든 값을 리턴하는 함수.
     public List<SQuest> ReadAllQuest()
     {
         List<SQuest> questList = new List<SQuest>();
