@@ -56,6 +56,10 @@ public class MCar : MonoBehaviour
 
     private WheelCollider[] ColliderWheels;
 
+    private float Angle;
+    private float Torque;
+    private float HandBrake;
+
     private void Awake()
     {
         CarInfo.Fuel = CarInfo.MaxFuel;
@@ -77,12 +81,41 @@ public class MCar : MonoBehaviour
         }
     }
 
+    private float GetCarTorque()
+    {
+        return CarInfo.Fuel > 0 ? CarInfo.Acceleration * Input.GetAxis("Vertical") : 0;
+    }
+
+    private void SetWheelShape(WheelCollider Wheel)
+    {
+        if (WheelShape)
+        {
+            Quaternion q;
+            Vector3 p;
+            Wheel.GetWorldPose(out p, out q);
+
+            Transform ShapeTransform = Wheel.transform.GetChild(0);
+
+            if (Wheel.tag.Contains("RightTire"))
+            {
+                ShapeTransform.rotation = q * Quaternion.Euler(0, 0, 90);
+                ShapeTransform.position = p;
+            }
+            else
+            {
+                ShapeTransform.position = p;
+                ShapeTransform.rotation = q * Quaternion.Euler(0, 180, 90); ;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
-        float Angle = CarInfo.MaxAngle * Input.GetAxis("Horizontal");
-        float Torque = CarInfo.Acceleration * Input.GetAxis("Vertical");
+        Angle = CarInfo.MaxAngle * Input.GetAxis("Horizontal");
 
-        float HandBrake = Input.GetKey(KeyCode.Space) ? CarInfo.Braking : 0;
+        Torque = GetCarTorque();
+
+        HandBrake = Input.GetKey(KeyCode.Space) ? CarInfo.Braking : 0;
 
         foreach (WheelCollider Wheel in ColliderWheels)
         {
@@ -102,32 +135,10 @@ public class MCar : MonoBehaviour
                 {
                     Wheel.motorTorque = Torque;
                 }
-            }
-
-            if(Torque > 0)
-            {
                 CarInfo.Fuel -= Torque * 0.001f;
             }
 
-            if (WheelShape)
-            {
-                Quaternion q;
-                Vector3 p;
-                Wheel.GetWorldPose(out p, out q);
-
-                Transform ShapeTransform = Wheel.transform.GetChild(0);
-
-                if (Wheel.tag.Contains("RightTire"))
-                {
-                    ShapeTransform.rotation = q * Quaternion.Euler(0, 0, 90);
-                    ShapeTransform.position = p;
-                }
-                else
-                {
-                    ShapeTransform.position = p;
-                    ShapeTransform.rotation = q * Quaternion.Euler(0, 180, 90); ;
-                }
-            }
+            SetWheelShape(Wheel);
         }
     }
 }

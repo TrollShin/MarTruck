@@ -305,6 +305,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926989693576759083, guid: e189309386c20844eac070ea0eb829c0,
+        type: 3}
+      propertyPath: CarInfo.MaxFuel
+      value: 55000
+      objectReference: {fileID: 0}
     - target: {fileID: 7926989693576759085, guid: e189309386c20844eac070ea0eb829c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,6 +434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 594567945548343892, guid: b2054af957002a4439aa50cc180d54b5,
+        type: 3}
+      propertyPath: CarInfo.MaxFuel
+      value: 45000
       objectReference: {fileID: 0}
     - target: {fileID: 594567945548343894, guid: b2054af957002a4439aa50cc180d54b5,
         type: 3}

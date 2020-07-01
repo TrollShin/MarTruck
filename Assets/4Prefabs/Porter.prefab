@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarInfo:
-    MaxFuel: 0
+    MaxFuel: 35000
     MaxSpeed: 90
     Acceleration: 600
     Friction: 0
