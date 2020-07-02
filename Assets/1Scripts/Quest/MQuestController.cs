@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MQuestController : MonoBehaviour
 {
-    public delegate void OnAddQuest(SQuest Quest);
-    public static OnAddQuest AddEvent;
 
     private GameObject SelectItem;
 
@@ -61,12 +58,5 @@ public class MQuestController : MonoBehaviour
     {
         SQuest myQuest = SelectItem.GetComponent<SQuest>();
 
-    }
-
-    public void OnClickExit()
-    {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        MQuest.LoadEvent -= ScrollViewInit;
-        MQuest.AddEvent -= AddScrollViewItem;
     }
 }

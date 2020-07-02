@@ -13,7 +13,9 @@ public class MDriftCamera : MonoBehaviour
 
     public float smoothing = 6f;
 
+    [NonSerialized]
     public Transform positionTarget;
+    [NonSerialized]
     public Transform CamAxis;
 
     public AdvancedOptions advancedOptions;
