@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//끝은 None
 public enum ETrafficLightState
 {
     Red = 0,
@@ -30,19 +31,18 @@ public class MTrafficLightSignal : MonoBehaviour
     }
 
     IEnumerator CChangeTrafficLightSignal()
-    {
-        if (Signal == ETrafficLightState.Yellow)
+    {        
+        OnSignalChanged?.Invoke(Signal);
+
+        Signal += 1;
+
+        yield return TrafficLightChangeDelayTime;
+
+        //None 즉 ETrafficLightState의 끝에오면 처음으로 바꿈
+        if (Signal == ETrafficLightState.None)
         {
             Signal = 0;
         }
-        else
-        {
-            Signal += 1;
-        }
-
-        OnSignalChanged?.Invoke(Signal);
-
-        yield return TrafficLightChangeDelayTime;
 
         StartCoroutine(CChangeTrafficLightSignal());
     }
