@@ -1,26 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MStoreUIFunctionLibrary : MonoBehaviour
 {
-    public SOptionType[] OptionTypes;
-    public GameObject Menu;
+    public GameObject[] Tab;
     private GameObject Activated;
+
+    public delegate void OnUpgradeStore();
+    public static OnUpgradeStore StoreEvent;
 
     private void Awake()
     {
-        foreach (SOptionType OptionType in OptionTypes)
+        foreach (GameObject item in Tab)
         {
-            OptionType.Options.SetActive(false);
-            OptionType.button.onClick.AddListener(() =>
-            { ShowOptions(OptionType.Options); });
+            item.SetActive(false);
         }
 
-        Activated = Menu;
-        Menu.SetActive(true);
+        Activated = Tab[0];
+        Activated.SetActive(true);
     }
 
     public void OnClickExit()
@@ -30,21 +29,22 @@ public class MStoreUIFunctionLibrary : MonoBehaviour
         MQuest.AddEvent = null;
     }
 
-    private void ShowOptions(GameObject Options)
-    {
-        if (Activated != Options)
-        {
-            Menu.SetActive(false);
-            Activated.SetActive(false);
-            Options.SetActive(true);
-            Activated = Options;
-        }
-    }
-
-    public void ActivatedMenu()
+    public void OnShowQuest()
     {
         Activated.SetActive(false);
-        Activated = Menu;
-        Menu.SetActive(true);
+        Tab[1].SetActive(true);
+        Activated = Tab[1];
+    }
+
+    public void OnUpgrade()
+    {
+        StoreEvent();
+    }
+
+    public void OnBackMenu()
+    {
+        Activated.SetActive(false);
+        Activated = Tab[0];
+        Activated.SetActive(true);
     }
 }

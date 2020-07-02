@@ -19,6 +19,16 @@ public class MStore : MonoBehaviour
 
     private Coroutine CreateQuest;
 
+    private void Awake()
+    {
+        MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
+    }
+
+    private void OnDisable()
+    {
+        MStoreUIFunctionLibrary.StoreEvent -= StoreUpgrade;
+    }
+
     private void Start()
     {
         StoreInit();
@@ -56,7 +66,11 @@ public class MStore : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.V))
         {
-            CSceneFunctionLibrary.ShowQuestMenu(QuestController.QuestList);
+            CSceneFunctionLibrary.ShowStoreMenu(QuestController.QuestList);
+        }
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            CSceneFunctionLibrary.ShowRepairMenu();
         }
     }
 }

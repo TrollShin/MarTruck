@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/0Scenes/Setting.unity
     guid: 30ef5dedc5502f446910f4b505929409
   - enabled: 1
-    path: Assets/0Scenes/Quest.unity
-    guid: b630507ec20828846b234989026ca2c4
+    path: Assets/0Scenes/StoreUI.unity
+    guid: 45b7ac2fd7e544c44ae241cc7770c3da
+  - enabled: 1
+    path: Assets/0Scenes/RepairShopUI.unity
+    guid: 281dc96a3c60da24cab108d4c3cbd941
   m_configObjects: {}

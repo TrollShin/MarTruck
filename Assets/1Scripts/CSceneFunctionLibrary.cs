@@ -28,18 +28,28 @@ public class CSceneFunctionLibrary
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Setting")); // Must be Active Scene for instantiate prefabs
     }
 
-    public static void ShowQuestMenu(List<SQuest> QuestList)
+    public static void ShowRepairMenu()
     {
-        AsyncOperation asyncHandle = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
-        asyncHandle.completed += ShowQuestMenu_completed;
+        SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
+    }
+
+    private static void ShowRepairMenu_completed(AsyncOperation obj)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("RepairShopUI")); // Must be Active Scene for instantiate prefabs
+    }
+
+    public static void ShowStoreMenu(List<SQuest> QuestList)
+    {
+        AsyncOperation asyncHandle = SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive);
+        asyncHandle.completed += ShowStoreMenu_completed;
         asyncHandle.completed += (obj) =>
         {
             MQuest.LoadEvent(QuestList);
         };
     }
 
-    private static void ShowQuestMenu_completed(AsyncOperation obj)
+    private static void ShowStoreMenu_completed(AsyncOperation obj)
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Quest")); // Must be Active Scene for instantiate prefabs
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("StoreUI")); // Must be Active Scene for instantiate prefabs
     }
 }

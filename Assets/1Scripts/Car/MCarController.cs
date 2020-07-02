@@ -22,7 +22,17 @@ public class MCarController : MonoBehaviour
         driftCamera = GetComponent<MDriftCamera>();
 
         CarInit();
-        MRepairShop.EventUpgradeCar += UpgradeCar;
+        
+    }
+
+    private void Awake()
+    {
+        MRepairShopUIFunctionLibrary.UpgradeEvent += UpgradeCar;
+    }
+
+    private void OnDisable()
+    {
+        MRepairShopUIFunctionLibrary.UpgradeEvent -= UpgradeCar;
     }
 
     //Car를 초기화해주는 함수.
@@ -35,11 +45,11 @@ public class MCarController : MonoBehaviour
             Cars.Add(transform.GetChild(i).gameObject);
         }
 
-        SetCar(CarLV);
+        CarSetting(CarLV);
     }
 
     //ECarLV에 맞춰 Car를 설정해주는 함수.
-    private void SetCar(ECarLV lv)
+    private void CarSetting(ECarLV lv)
     {
         for (int i = 0; i < Cars.Count; i++)
         {
@@ -60,7 +70,7 @@ public class MCarController : MonoBehaviour
     private void UpgradeCar()
     {
         CarLV++;
-        SetCar(CarLV);
+        CarSetting(CarLV);
     }
 
     //차를 받아 카메라 셋팅해주는 함수.

@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414343865}
   - component: {fileID: 1414343864}
+  - component: {fileID: 1414343866}
   m_Layer: 0
   m_Name: RepairShop
   m_TagString: Untagged
@@ -392,6 +393,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1414343866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414343863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.278423, y: 5.7090855, z: 7.832901}
+  m_Center: {x: -0.06962299, y: 2.3545427, z: 0.37654114}
 --- !u!1001 &1420908044
 PrefabInstance:
   m_ObjectHideFlags: 0

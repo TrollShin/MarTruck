@@ -81,11 +81,13 @@ public class MCar : MonoBehaviour
         }
     }
 
+    //차의 Torque를 리턴하는 함수.
     private float GetCarTorque()
     {
         return CarInfo.Fuel > 0 ? CarInfo.Acceleration * Input.GetAxis("Vertical") : 0;
     }
 
+    //Wheel에 Tire 모델을 맞춰주는 함수.
     private void SetWheelShape(WheelCollider Wheel)
     {
         if (WheelShape)

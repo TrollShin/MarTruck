@@ -25,30 +25,6 @@ public class MQuest : MonoBehaviour
 
         AllQuestList = CQuestDBManager.GetInstance().ReadAllQuest();
     }
-    //public IEnumerator AddQuest()
-    //{
-    //    while (true)
-    //    {
-    //        SQuest item = CreateQuest();
-    //        QuestList.Add(item);
-    //        if(AddEvent != null)
-    //        {
-    //            AddEvent(item);
-    //        }
-
-    //        yield return new WaitForSeconds(CreateTime);
-    //    }
-    //}
-
-    //private SQuest CreateQuest()
-    //{
-    //    int random = Random.Range(0, AllQuestList.Count);
-    //    SQuest item = new SQuest(AllQuestList[random]);
-    //    item.IsSuccess = false;
-    //    item.Reward = Random.Range(10, 51);
-
-    //    return item;
-    //}
 
     //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
     public IEnumerator CreateQuestCoroutine(EStoreLV StoreLV)
@@ -73,9 +49,9 @@ public class MQuest : MonoBehaviour
         }
     }
 
+    //List<SQuest> 안에서 랜덤으로 퀘스트를 뽑아주는 함수.
     private SQuest GetRandomQuest(List<SQuest> quests)
     {
-        Debug.Log(quests.Count + " / " + AllQuestList.Count);
         int random = Random.Range(0, quests.Count);
         SQuest item = new SQuest(quests[random]);
         item.IsSuccess = false;
@@ -84,6 +60,7 @@ public class MQuest : MonoBehaviour
         return item;
     }
 
+    //SQuest를 리스트에 추가해주는 함수.
     private void AddQuest(SQuest item)
     {
         QuestList.Add(item);
