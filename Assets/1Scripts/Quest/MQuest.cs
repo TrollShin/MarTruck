@@ -10,61 +10,86 @@ public class MQuest : MonoBehaviour
     public delegate void OnAddQuest(SQuest Quest);
     public static OnAddQuest AddEvent;
 
-    private float CreateTime = 60f;
+    private float CreateTime = 3f;
 
-    private List<SQuest> AllQuestList = new List<SQuest>();
+    internal List<SQuest> AllQuestList = new List<SQuest>();
 
-    private List<SQuest> QuestList = new List<SQuest>();
+    internal List<SQuest> QuestList = new List<SQuest>();
 
     private void Awake()
     {
-        if(CQuestDBManager.GetInstance().DBConnectionCheck())
-        {
-            AllQuestList = CQuestDBManager.GetInstance().ReadAllQuest();
-        }
-        else
+        if (!CQuestDBManager.GetInstance().DBConnectionCheck())
         {
             CQuestDBManager.GetInstance().DBCreate();
         }
-    }
 
-    private void Start()
-    {
-        StartCoroutine(AddQuest());
+        AllQuestList = CQuestDBManager.GetInstance().ReadAllQuest();
     }
+    //public IEnumerator AddQuest()
+    //{
+    //    while (true)
+    //    {
+    //        SQuest item = CreateQuest();
+    //        QuestList.Add(item);
+    //        if(AddEvent != null)
+    //        {
+    //            AddEvent(item);
+    //        }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            CSceneFunctionLibrary.ShowQuestMenu(QuestList);
-        }
-    }
+    //        yield return new WaitForSeconds(CreateTime);
+    //    }
+    //}
 
-    //Quest 생성을 CreateTime 마다 해주는 코루틴
-    IEnumerator AddQuest()
+    //private SQuest CreateQuest()
+    //{
+    //    int random = Random.Range(0, AllQuestList.Count);
+    //    SQuest item = new SQuest(AllQuestList[random]);
+    //    item.IsSuccess = false;
+    //    item.Reward = Random.Range(10, 51);
+
+    //    return item;
+    //}
+
+    //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
+    public IEnumerator CreateQuestCoroutine(EStoreLV StoreLV)
     {
         while (true)
         {
-            SQuest item = CreateQuest();
-            QuestList.Add(item);
-            if(AddEvent != null)
-            {
-                AddEvent(item);
-            }
+            //List<SQuest> tempList = new List<SQuest>();
+            //foreach (SQuest temp in AllQuestList)
+            //{
+            //    if (temp.limitLV <= StoreLV)
+            //    {
+            //        tempList.Add(temp);
+            //    }
+            //}
+            List<SQuest> tempList = new List<SQuest>();
+            tempList = AllQuestList;
+            SQuest RandomQuest = GetRandomQuest(tempList);
+
+            AddQuest(RandomQuest);
 
             yield return new WaitForSeconds(CreateTime);
         }
     }
 
-    //Quest를 랜덤으로 생성해서 리턴해주는 함수.
-    private SQuest CreateQuest()
+    private SQuest GetRandomQuest(List<SQuest> quests)
     {
-        int random = Random.Range(0, AllQuestList.Count);
-        SQuest item = new SQuest(AllQuestList[random]);
+        Debug.Log(quests.Count + " / " + AllQuestList.Count);
+        int random = Random.Range(0, quests.Count);
+        SQuest item = new SQuest(quests[random]);
         item.IsSuccess = false;
         item.Reward = Random.Range(10, 51);
 
         return item;
+    }
+
+    private void AddQuest(SQuest item)
+    {
+        QuestList.Add(item);
+        if (AddEvent != null)
+        {
+            AddEvent(item);
+        }
     }
 }
