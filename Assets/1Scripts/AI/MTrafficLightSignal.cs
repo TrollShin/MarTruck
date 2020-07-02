@@ -40,7 +40,6 @@ public class MTrafficLightSignal : MonoBehaviour
             Signal += 1;
         }
 
-        Debug.Log("In TrafficLight" + Signal);
         OnSignalChanged?.Invoke(Signal);
 
         yield return TrafficLightChangeDelayTime;

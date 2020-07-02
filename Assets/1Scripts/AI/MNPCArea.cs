@@ -28,6 +28,8 @@ public class MNPCArea : MonoBehaviour
 
         ActivedDestinations.Clear();
 
+        if (SearchedObject.Length == 0) return;
+
         for(int i = 0; i < SearchedObject.Length; i++)
         {
             if(SearchedObject[i].tag == nameof(ETag.Destination))

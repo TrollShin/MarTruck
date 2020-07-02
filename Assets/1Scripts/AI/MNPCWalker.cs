@@ -56,11 +56,11 @@ public class MNPCWalker : MonoBehaviour
         Agent.SetDestination(_Transform.position);
     }
 
-    public void ChangeAreaMask(EAreaMask AreaMask)
+    public void ChangeAreaMask(EAreaMask _AreaMask)
     {
         if (IsJayWalker) return;
 
-        OriginalyAreaMask = AreaMask;
+        OriginalyAreaMask = _AreaMask;
         Agent.areaMask = (int)OriginalyAreaMask;
 
         Agent.SetDestination(Agent.destination);

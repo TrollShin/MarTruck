@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5278687663039569085}
   - component: {fileID: 5278687663039569084}
   - component: {fileID: 1332837561929311944}
+  - component: {fileID: 2854840530626336014}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -43,7 +44,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5278687663039569087}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -52,7 +53,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.8
+  m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
@@ -68,9 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a494af4fd28e2344acd12f3b1e15b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestRedMaterial: {fileID: 2100000, guid: dd85904dbff75324591e64896cddd928, type: 2}
-  TestDefaultMaterial: {fileID: 670224309865224971, guid: ec34609a7acc8314a99eab3f87077066,
-    type: 3}
 --- !u!205 &1332837561929311944
 LODGroup:
   m_ObjectHideFlags: 0
@@ -85,19 +83,24 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.24343842
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2476013790621562084}
-  - screenRelativeHeight: 0.09293471
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2476013790621562084}
-  - screenRelativeHeight: 0.027907606
+  - screenRelativeHeight: 0.020528771
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2476013790621562084}
   m_Enabled: 1
+--- !u!65 &2854840530626336014
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278687663039569087}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1, z: 0.4}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &5278687663303039281
 PrefabInstance:
   m_ObjectHideFlags: 0
