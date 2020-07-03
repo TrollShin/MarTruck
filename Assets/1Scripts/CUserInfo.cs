@@ -11,9 +11,9 @@ public class CUserInfo
 
     public int[] QuestsIdx;
 
-    private CUserInfo instance;
+    private static CUserInfo instance;
 
-    public CUserInfo GetInstance()
+    public static CUserInfo GetInstance()
     {
         if(instance == null)
         {
