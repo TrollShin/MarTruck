@@ -9,7 +9,7 @@ public class CUserInfo
     public int CarLv;
     public int StoreLv;
 
-    public int[] QuestsIdx;
+    public List<SQuest> QuestLst;
 
     private static CUserInfo instance;
 
