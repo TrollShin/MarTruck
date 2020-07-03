@@ -18,10 +18,7 @@ public class MQuest : MonoBehaviour
 
     private void Awake()
     {
-        if (!CQuestDBManager.GetInstance().DBConnectionCheck())
-        {
-            CQuestDBManager.GetInstance().DBCreate();
-        }
+        CQuestDBManager.GetInstance().DBCreate();
 
         AllQuestList = CQuestDBManager.GetInstance().ReadAllQuest();
     }
@@ -31,16 +28,14 @@ public class MQuest : MonoBehaviour
     {
         while (true)
         {
-            //List<SQuest> tempList = new List<SQuest>();
-            //foreach (SQuest temp in AllQuestList)
-            //{
-            //    if (temp.limitLV <= StoreLV)
-            //    {
-            //        tempList.Add(temp);
-            //    }
-            //}
             List<SQuest> tempList = new List<SQuest>();
-            tempList = AllQuestList;
+            foreach (SQuest temp in AllQuestList)
+            {
+                if (temp.LimitLV <= (int)StoreLV)
+                {
+                    tempList.Add(temp);
+                }
+            }
             SQuest RandomQuest = GetRandomQuest(tempList);
 
             AddQuest(RandomQuest);
