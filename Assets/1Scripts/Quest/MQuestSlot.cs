@@ -14,11 +14,11 @@ public class MQuestSlot : MonoBehaviour
     [SerializeField]
     private Text Reward;
 
-    void UpdateQuestInfo(SQuest Quest)
+    public void UpdateQuestInfo(SQuest Quest)
     {
         Title.text = Quest.Name;
         Description.text = Quest.Description;
         IsSuccessed.isOn = Quest.IsSuccess;
-        Reward.text = "KRW" + Quest.Reward.ToString();
+        Reward.text = "KRW  " + Quest.Reward.ToString();
     }
 }
