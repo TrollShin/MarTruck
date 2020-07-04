@@ -16,7 +16,7 @@ public class MGameplayStatic : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else if (Instance != this)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 
     public static CPlayerState GetPlayerState()

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MQuestUIFunctionLibrary : MonoBehaviour
 {
+    public delegate void OnAddListQuest(SQuest Quest);
+    public static OnAddListQuest AddListEvent;
+
 
     private GameObject SelectItem;
 
@@ -25,11 +28,12 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     //시작 시 스크롤뷰 셋팅해주는 함수.
     private void ScrollViewInit()
     {
-        if(CUserInfo.GetInstance().QuestLst != null)
+        CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
+        if (PlayerState.CurrentQuest != null)
         {
-            for (int i = 0; i < CUserInfo.GetInstance().QuestLst.Count; i++)
+            for (int i = 0; i < PlayerState.CurrentQuest.Count; i++)
             {
-                AddScrollViewItem(CUserInfo.GetInstance().QuestLst[i]);
+                AddScrollViewItem(PlayerState.CurrentQuest[i]);
             }
         }
     }
@@ -54,16 +58,20 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         QuestInfo.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
         QuestInfo.transform.GetChild(1).GetComponent<Text>().text = quest.Description;
         QuestInfo.transform.GetChild(2).GetComponent<Text>().text = quest.Reward.ToString();
+        QuestInfo.transform.GetChild(3).GetComponent<Text>().text = quest.TargetPos[0].ToString() + ", " + quest.TargetPos[1].ToString();
     }
 
     //Quest 수락시 퀘스트 적용시켜주는 함수.
     public void AcceptQuest()
     {
-        SQuest myQuest = SelectItem.GetComponent<SQuest>();
+        if (CUserInfo.GetInstance().QuestLst.Count >= 3) return;
 
-        if (MGameplayStatic.GetPlayerState() != null)
-        {
-            MGameplayStatic.GetPlayerState().CurrentQuest = myQuest;
-        }
+        SQuest myQuest = SelectItem.GetComponent<MStructure>().Quset;
+
+        CUserInfo.GetInstance().QuestLst.Add(myQuest);
+
+        AddListEvent(myQuest);
+
+        Destroy(SelectItem);
     }
 }

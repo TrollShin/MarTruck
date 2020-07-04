@@ -9,7 +9,7 @@ public class CUserInfo
     public int CarLv;
     public int StoreLv;
 
-    public List<SQuest> QuestLst;
+    public List<SQuest> QuestLst = new List<SQuest>();
 
     private static CUserInfo instance;
 

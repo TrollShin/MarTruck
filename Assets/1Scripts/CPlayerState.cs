@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 public class CPlayerState
 {
-    public SQuest CurrentQuest;
-    public SCarInfo CurrentCar;
+    public List<SQuest> CurrentQuest = new List<SQuest>();
+    public MCar CurrentCar = new MCar();
 
     public void Init() //Initialize datas
     {
-
+        CurrentQuest.Capacity = 10;
     }
 }

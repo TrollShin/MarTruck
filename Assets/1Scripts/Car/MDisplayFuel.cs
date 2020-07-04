@@ -16,4 +16,13 @@ public class MDisplayFuel : MonoBehaviour
     [SerializeField]
     private Image FuelImage;
 
+    private void Update()
+    {
+        CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
+        if (PlayerState == null)
+            return;
+
+        SCarInfo CarInfo = PlayerState.CurrentCar.CarInfo;
+        FuelRatio = CarInfo.Fuel / CarInfo.MaxFuel;
+    }
 }

@@ -26,9 +26,10 @@ public class MRepairShop : MonoBehaviour
     //차의 연료를 채워주는 함수.
     private void Refueling()
     {
-        if(MGameplayStatic.GetPlayerState() != null)
+        CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
+        if(PlayerState != null)
         {
-            MGameplayStatic.GetPlayerState().CurrentCar.Fuel = MGameplayStatic.GetPlayerState().CurrentCar.MaxFuel;
+            PlayerState.CurrentCar.CarInfo.Fuel = PlayerState.CurrentCar.CarInfo.MaxFuel;
         }
         
     }
