@@ -11,11 +11,8 @@ public class MQuestController
 
     internal List<SQuest> AllQuestList = new List<SQuest>();
 
-    public MQuestController()
+    public MQuestController(List<SQuest> AllQuests)
     {
-        if (AllQuestList.Count != 0) return;
-
-        List<SQuest> AllQuests = CQuestDBManager.GetInstance().ReadAllQuest();
 
         for (int i = 0; i < AllQuests.Count; i++)
         {
@@ -26,13 +23,16 @@ public class MQuestController
     //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
     public IEnumerator CreateQuestCoroutine()
     {
+        WaitForSeconds wait = new WaitForSeconds(CreateTime);
         while (true)
         {
-            SQuest RandomQuest = GetRandomQuest(AllQuestList);
+            if (MGameplayStatic.GetPlayerState().CurrentQuest.Count < 10)
+            {
+                SQuest RandomQuest = GetRandomQuest(AllQuestList);
 
-            AddQuest(RandomQuest);
-
-            yield return new WaitForSeconds(CreateTime);
+                AddQuest(RandomQuest);
+            }
+            yield return wait;
         }
     }
 
@@ -49,21 +49,30 @@ public class MQuestController
         }
 
         int QuestIndexRandom = Random.Range(0, PossibleQuestList.Count);
-        int xPosRandom = Random.Range(0, CUserInfo.GetInstance().StoreLv);
-        int yPosRandom = Random.Range(0, CUserInfo.GetInstance().StoreLv);
+        int xPosRandom;
+        int yPosRandom;
+        while(true)
+        {
+            xPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
+            yPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
+            if(xPosRandom != 0 || yPosRandom != 0)
+            {
+                break;
+            }
+        }
 
         SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
         item.TargetPos = new int[2] { xPosRandom, yPosRandom };
         item.IsSuccess = false;
-        item.Reward = (xPosRandom + yPosRandom);
+        item.Reward = Mathf.Abs(xPosRandom) + Mathf.Abs(yPosRandom);
 
         return item;
     }
 
-    //SQuest를 리스트에 추가해주는 함수.
+    //SQuest를 스크롤뷰에 쓰는 리스트에 추가해주는 함수.
     private void AddQuest(SQuest item)
     {
-        CUserInfo.GetInstance().QuestLst.Add(item);
+        MGameplayStatic.GetPlayerState().CurrentQuest.Add(item);
         if (AddEvent != null)
         {
             AddEvent(item);

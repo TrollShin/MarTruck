@@ -7,6 +7,16 @@ public class MQuestList : MonoBehaviour
 {
     public Object QuestSlot;
 
+    private void Awake()
+    {
+        MQuestUIFunctionLibrary.AddListEvent += AddQuest;
+    }
+
+    private void OnDisable()
+    {
+        MQuestUIFunctionLibrary.AddListEvent -= AddQuest;
+    }
+
     public void UpdateQuestList(List<SQuest> QuestList)
     {
         ClearQuestList();

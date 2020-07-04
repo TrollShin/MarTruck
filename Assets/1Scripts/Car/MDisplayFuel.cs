@@ -22,7 +22,7 @@ public class MDisplayFuel : MonoBehaviour
         if (PlayerState == null)
             return;
 
-        SCarInfo CarInfo = PlayerState.CurrentCar;
+        SCarInfo CarInfo = PlayerState.CurrentCar.CarInfo;
         FuelRatio = CarInfo.Fuel / CarInfo.MaxFuel;
     }
 }

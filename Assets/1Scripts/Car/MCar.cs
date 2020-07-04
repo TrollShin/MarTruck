@@ -14,7 +14,7 @@ public struct SCarInfo
     public float Braking;
     public float MaxAngle;
 
-    internal float Fuel;
+    public float Fuel;
 
     SCarInfo(float MaxFuel, float MaxSpeed, float Acceleration, float Friction, float Braking, float MaxAngle, float Fuel)
     {
@@ -137,7 +137,7 @@ public class MCar : MonoBehaviour
                 {
                     Wheel.motorTorque = Torque;
                 }
-                CarInfo.Fuel -= Torque * 0.001f;
+                CarInfo.Fuel -= Math.Abs(Torque) * 0.001f;
             }
 
             SetWheelShape(Wheel);
