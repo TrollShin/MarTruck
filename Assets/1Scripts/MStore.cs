@@ -11,11 +11,10 @@ public enum EStoreLV
 
 public class MStore : MonoBehaviour
 {
-    private EStoreLV StoreLV;
 
     public GameObject[] Store;
 
-    private MQuest QuestController;
+    private MQuestController QuestController = new MQuestController();
 
     private Coroutine CreateQuest;
 
@@ -33,40 +32,40 @@ public class MStore : MonoBehaviour
     {
         StoreInit();
 
-        QuestController = GetComponent<MQuest>();
-
-        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine(StoreLV));
+        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
     }
 
     //시작 시 마트 셋팅해주는 함수.
     private void StoreInit()
     {
-        //if(게임 세이브가 존재할경우)
-        //StoreInfo = (gameData)
-
-        StoreLV = EStoreLV.MomNPopStore;
-
-        Store[(int)StoreLV].SetActive(true);
+        if (CUserInfo.GetInstance() != null)
+        {
+            Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        }
     }
 
     //마트를 업그레이드 하는 함수.
     private void StoreUpgrade()
     {
-        Store[(int)StoreLV].SetActive(false);
+        if(CUserInfo.GetInstance() != null)
+        {
+            Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
-        StoreLV += 1;
+            CUserInfo.GetInstance().StoreLv += 1;
 
-        StopCoroutine(CreateQuest);
-        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine(StoreLV));
+            StopCoroutine(CreateQuest);
+            CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
 
-        Store[(int)StoreLV].SetActive(true);
+            Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        }
+        
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.V))
         {
-            CSceneFunctionLibrary.ShowStoreMenu(QuestController.QuestList);
+            CSceneFunctionLibrary.ShowStoreMenu();
         }
         if(Input.GetKeyDown(KeyCode.B))
         {

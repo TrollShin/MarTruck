@@ -7,8 +7,6 @@ public class MRepairShop : MonoBehaviour
     public delegate void OnChangeCar();
     public static event OnChangeCar RepairEvent;
 
-    private MCar Car;
-
     private void Awake()
     {
         MRepairShopUIFunctionLibrary.RefuelEvent += Refueling;
@@ -28,17 +26,10 @@ public class MRepairShop : MonoBehaviour
     //차의 연료를 채워주는 함수.
     private void Refueling()
     {
-        if(Car != null)
+        if(MGameplayStatic.GetPlayerState() != null)
         {
-            Car.CarInfo.Fuel = Car.CarInfo.MaxFuel;
+            MGameplayStatic.GetPlayerState().CurrentCar.Fuel = MGameplayStatic.GetPlayerState().CurrentCar.MaxFuel;
         }
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if(collision.CompareTag("Car"))
-        {
-            Car = collision.GetComponent<MCar>();
-        }
+        
     }
 }

@@ -38,14 +38,9 @@ public class CSceneFunctionLibrary
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("RepairShopUI")); // Must be Active Scene for instantiate prefabs
     }
 
-    public static void ShowStoreMenu(List<SQuest> QuestList)
+    public static void ShowStoreMenu()
     {
-        AsyncOperation asyncHandle = SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive);
-        asyncHandle.completed += ShowStoreMenu_completed;
-        asyncHandle.completed += (obj) =>
-        {
-            MQuest.LoadEvent(QuestList);
-        };
+        SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
     }
 
     private static void ShowStoreMenu_completed(AsyncOperation obj)

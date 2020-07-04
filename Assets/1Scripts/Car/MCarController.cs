@@ -11,8 +11,6 @@ public enum ECarLV
 
 public class MCarController : MonoBehaviour
 {
-    private ECarLV CarLV;
-
     private MDriftCamera driftCamera;
 
     private List<GameObject> Cars = new List<GameObject>();
@@ -38,14 +36,15 @@ public class MCarController : MonoBehaviour
     //Car를 초기화해주는 함수.
     private void CarInit()
     {
-        CarLV = ECarLV.Porter;
-
         for (int i = 0; i < transform.childCount ; i++)
         {
             Cars.Add(transform.GetChild(i).gameObject);
         }
 
-        CarSetting(CarLV);
+        if (CUserInfo.GetInstance() != null)
+        {
+            CarSetting((ECarLV)CUserInfo.GetInstance().CarLv);
+        }
     }
 
     //ECarLV에 맞춰 Car를 설정해주는 함수.
@@ -63,14 +62,20 @@ public class MCarController : MonoBehaviour
             }
         }
 
-        SetCamera(Cars[(int)CarLV]);
+        if (CUserInfo.GetInstance() != null)
+        {
+            SetCamera(Cars[CUserInfo.GetInstance().CarLv]);
+        }
     }
 
     //Car를 업그레이드 하는 함수.
     private void UpgradeCar()
     {
-        CarLV++;
-        CarSetting(CarLV);
+        if (CUserInfo.GetInstance() != null)
+        {
+            CUserInfo.GetInstance().CarLv++;
+            CarSetting((ECarLV)CUserInfo.GetInstance().CarLv);
+        }
     }
 
     //차를 받아 카메라 셋팅해주는 함수.
