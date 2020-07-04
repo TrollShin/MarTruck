@@ -16,7 +16,7 @@ public class CSaveGame
 {
     private static CSaveGame instance;
 
-    private string FilePath;// = Application.persistentDataPath;
+    private string FilePath = Application.persistentDataPath;
 
     private StringBuilder StrBuilder = new StringBuilder();
 
