@@ -30,11 +30,11 @@ public class MPlayerInfo : MonoBehaviour
 
     private void InitQuests()
     {
-        if (CUserInfo.GetInstance().QuestsIdx.Length == 0) return;
+        if (CUserInfo.GetInstance().QuestLst.Count == 0) return;
 
         List<SQuest> AllQuests = CQuestDBManager.GetInstance().ReadAllQuest();
 
-        for(int i = 0; i < CUserInfo.GetInstance().QuestsIdx.Length; i++)
+        for(int i = 0; i < CUserInfo.GetInstance().QuestLst.Count; i++)
         {
             Quests.Add(AllQuests[i]);
         }
