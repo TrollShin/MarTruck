@@ -21,10 +21,7 @@ public class MCrossWalk : MonoBehaviour
         {
             if (TraffickLight.GetSignal() == ETrafficLightState.Red)
             {
-                //PlayerInfo.Money -= Penalty;
-
-                //이렇게하면 되지 않을까.
-                //CUserInfo.GetInstance().Money -= Penalty;
+                CUserInfo.GetInstance().Money -= Penalty;
             }
             //OnPassCrossWalk?.Invoke();
         }
