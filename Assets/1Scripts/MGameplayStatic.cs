@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MGameplayStatic : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class MGameplayStatic : MonoBehaviour
 
     private void Awake() // Allow access only scene MGameplayStatic Component has
     {
-        Instance = new GameObject("GameplayStatic").AddComponent<MGameplayStatic>();
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(this.gameObject);
     }
 
     public static CPlayerState GetPlayerState()
