@@ -152,4 +152,11 @@ public class MCar : MonoBehaviour
             SetWheelShape(Wheel);
         }
     }
+
+    private void Update()
+    {
+        Camera cam = transform.GetComponentInChildren<Camera>();
+        cam.transform.position = transform.position + new Vector3(0, 100, 0);
+        cam.transform.LookAt(transform);
+    }
 }

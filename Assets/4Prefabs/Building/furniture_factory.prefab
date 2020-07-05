@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6501478199673803520}
   - component: {fileID: 6501478199668719104}
   - component: {fileID: -8418691395707407260}
+  - component: {fileID: 4761329760985919468}
   m_Layer: 0
   m_Name: furniture_factory
   m_TagString: Untagged
@@ -120,3 +121,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5349128, y: 1.3111428, z: 3.5758932}
   m_Center: {x: -0.87575144, y: 0.6555714, z: 1.1014689}
+--- !u!114 &4761329760985919468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6501478199675997632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

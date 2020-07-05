@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1354574702297370492}
   - component: {fileID: 1354574702304666236}
   - component: {fileID: -6667432547907389785}
+  - component: {fileID: 5981109680033227295}
   m_Layer: 10
   m_Name: city_hall
   m_TagString: Untagged
@@ -117,3 +118,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1904175, y: 1.5643189, z: 3.536074}
   m_Center: {x: -1.025031, y: 0.7858553, z: 1.2255483}
+--- !u!114 &5981109680033227295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354574702295175612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

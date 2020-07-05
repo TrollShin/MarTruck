@@ -31,6 +31,5 @@ public class MRepairShop : MonoBehaviour
         {
             PlayerState.CurrentCar.CarInfo.Fuel = PlayerState.CurrentCar.CarInfo.MaxFuel;
         }
-        
     }
 }

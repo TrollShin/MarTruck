@@ -14,6 +14,8 @@ public class MStore : MonoBehaviour
 
     public GameObject[] Store;
 
+    public GameObject Floors;
+
     private MQuestController QuestController;
 
     private Coroutine CreateQuest;
@@ -21,7 +23,7 @@ public class MStore : MonoBehaviour
     private void Awake()
     {
         CQuestDBManager.GetInstance().DBCreate();
-        QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest());
+        QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
 
         CUserInfo.GetInstance().CarLv = 0;
         CUserInfo.GetInstance().StoreLv = 0;

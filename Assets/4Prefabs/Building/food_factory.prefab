@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 416929817131271636}
   - component: {fileID: 416929817138768084}
   - component: {fileID: 7747784898810044240}
+  - component: {fileID: 643606744069368041}
   m_Layer: 0
   m_Name: food_factory
   m_TagString: Untagged
@@ -119,3 +120,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4412832, y: 1.5427518, z: 3.2601066}
   m_Center: {x: -0.82237154, y: 0.7713759, z: 1.1944644}
+--- !u!114 &643606744069368041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416929817129278228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
