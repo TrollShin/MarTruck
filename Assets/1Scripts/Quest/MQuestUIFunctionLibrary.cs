@@ -44,11 +44,11 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     private void AddScrollViewItem(SQuest quest)
     {
         GameObject index = Instantiate(QuestFrame, new Vector3(0, 0, 0), Quaternion.identity);
-
         index.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
         index.GetComponent<Button>().onClick.AddListener(ClickQuest);
         index.GetComponent<MStructure>().Quset = quest;
         index.transform.SetParent(Content.transform);
+        index.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
 
     //Quest 클릭시 퀘스트 정보를 띄워주는 함수.(UI)

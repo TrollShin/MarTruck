@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EntranceText: {fileID: 0}
 --- !u!114 &5885238223747145279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,4 +210,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2DD\uB8CC\uD4F8 \uBC30\uB2EC"
+  m_Text: 
