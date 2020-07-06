@@ -29,7 +29,7 @@ public class MQuestList : MonoBehaviour
     public void AddQuest(SQuest Quest)
     {
         GameObject Obj = Instantiate(QuestSlot) as GameObject;
-        Obj.transform.parent = gameObject.transform;
+        Obj.transform.SetParent(gameObject.transform);
         Obj.GetComponent<MQuestSlot>().UpdateQuestInfo(Quest);
         RectTransform rectTransform = GetComponent<RectTransform>();
         VerticalLayoutGroup layoutGroup = GetComponent<VerticalLayoutGroup>();

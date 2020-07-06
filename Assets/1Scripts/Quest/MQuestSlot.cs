@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MQuestSlot : MonoBehaviour
 {
     [SerializeField]
-    private Text Title;
+    private TextMeshProUGUI Title;
     [SerializeField]
-    private Text Description;
+    private TextMeshProUGUI Description;
     [SerializeField]
     private Toggle IsSuccessed;
     [SerializeField]
-    private Text Reward;
+    private TextMeshProUGUI Reward;
 
     public void UpdateQuestInfo(SQuest Quest)
     {

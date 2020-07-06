@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MDisplayMoney : MonoBehaviour
 {
-    public Text DisplayText;
+    public TextMeshProUGUI DisplayText;
     private int Money
     {
         set
