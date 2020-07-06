@@ -69,10 +69,6 @@ public class MQuestController
             xPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
             yPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
 
-            if(xPosRandom != 0 || yPosRandom != 0)
-            {
-                break;
-            }
             for (int i = 0; i < ExceptionPos.GetLength(0); i++)
             {
                 if (xPosRandom == ExceptionPos[i, 0] && yPosRandom == ExceptionPos[i, 1])
