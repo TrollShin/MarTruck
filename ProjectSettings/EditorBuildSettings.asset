@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0Scenes/RepairShopUI.unity
     guid: 281dc96a3c60da24cab108d4c3cbd941
+  - enabled: 1
+    path: Assets/0Scenes/Pause.unity
+    guid: ce381ca27ca75244bb9963130d92c63e
   m_configObjects: {}
