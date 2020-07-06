@@ -1,72 +1,115 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class MQuestController : MonoBehaviour
+public class MQuestController
 {
     public delegate void OnAddQuest(SQuest Quest);
     public static OnAddQuest AddEvent;
 
-    private GameObject SelectItem;
+    private float CreateTime = 10f;
 
-    public GameObject QuestFrame;
+    private List<SQuest> AllQuestList = new List<SQuest>();
 
-    public GameObject QuestInfo;
+    private GameObject Floors;
 
-    public GameObject Content;
+    private int[,] ExceptionPos = new int[,]{
+        { 0, 0 },
+        { 1, 1 },
+        { 2, 4 },
+        { 2, -4},
+        { -2, 1 },
+        { -3, -2 },
+    };
 
-    private void Awake()
+    public MQuestController(List<SQuest> AllQuests, GameObject TargetFloors)
     {
-        MQuest.LoadEvent += ScrollViewInit;
-        MQuest.AddEvent += AddScrollViewItem;
+        for (int i = 0; i < AllQuests.Count; i++)
+        {
+            AllQuestList.Add(AllQuests[i]);
+        }
+        Floors = TargetFloors;
     }
 
-    //시작 시 스크롤뷰 셋팅해주는 함수.
-    private void ScrollViewInit(List<SQuest> QuestList)
+    //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
+    public IEnumerator CreateQuestCoroutine()
     {
-        for (int i = 0; i < QuestList.Count; i++)
+        WaitForSeconds wait = new WaitForSeconds(CreateTime);
+        while (true)
         {
-            AddScrollViewItem(QuestList[i]);
+            if (MGameplayStatic.GetPlayerState().CurrentQuest.Count < 10)
+            {
+                SQuest RandomQuest = GetRandomQuest(AllQuestList);
+
+                AddQuest(RandomQuest);
+            }
+            yield return wait;
         }
     }
 
-    //스크롤뷰에 quest 추가해주는 함수.
-    private void AddScrollViewItem(SQuest quest)
+    //List<SQuest> 안에서 랜덤으로 퀘스트를 뽑아주는 함수.
+    private SQuest GetRandomQuest(List<SQuest> quests)
     {
-        GameObject index = Instantiate(QuestFrame, new Vector3(0, 0, 0), Quaternion.identity);
+        List<SQuest> PossibleQuestList = new List<SQuest>();
+        foreach (SQuest temp in quests)
+        {
+            if (temp.LimitLV <= CUserInfo.GetInstance().StoreLv)
+            {
+                PossibleQuestList.Add(temp);
+            }
+        }
 
-        index.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
-        index.GetComponent<Button>().onClick.AddListener(ClickQuest);
-        index.GetComponent<MStructure>().Quset = quest;
-        index.transform.SetParent(Content.transform);
+        int QuestIndexRandom = Random.Range(0, PossibleQuestList.Count);
+        int xPosRandom = 0;
+        int yPosRandom = 0;
+        int StructureRandom = -1;
+        //bool isSuccessRandom = false;
+        while (true)
+        {
+            xPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
+            yPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
+
+            if(xPosRandom != 0 || yPosRandom != 0)
+            {
+                break;
+            }
+            //for (int i = 0; i < ExceptionPos.GetLength(0); i++)
+            //{
+                //if (xPosRandom == ExceptionPos[i, 0] && yPosRandom == ExceptionPos[i, 1])
+                //{
+                //}
+            //}
+        }
+
+        for (int i=0; i < Floors.transform.childCount; i++)
+        {
+            string name = Floors.transform.GetChild(i).gameObject.name;
+            string[] split = name.Split(',');
+            string[] splitL = split[0].Split('(');
+            string[] splitR = split[1].Split(')');
+            if (xPosRandom.ToString().Equals(splitL[1]) && yPosRandom.ToString().Equals(splitR[0])) 
+            {
+                MStructure[] Structures = Floors.transform.GetChild(i).GetComponentsInChildren<MStructure>();
+                StructureRandom = Random.Range(0, Structures.Length);
+            }
+        }
+
+        SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
+        item.TargetPos = new int[3] { xPosRandom, yPosRandom, StructureRandom };
+        item.IsSuccess = false;
+        item.Reward = Mathf.Abs(xPosRandom) + Mathf.Abs(yPosRandom);
+
+        return item;
     }
 
-    //Quest 클릭시 퀘스트 정보를 띄워주는 함수.(UI)
-    private void ClickQuest()
+    //SQuest를 스크롤뷰에 쓰는 리스트에 추가해주는 함수.
+    private void AddQuest(SQuest item)
     {
-        SelectItem = EventSystem.current.currentSelectedGameObject;
-        SQuest quest = SelectItem.GetComponent<MStructure>().Quset;
-
-        QuestInfo.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
-        QuestInfo.transform.GetChild(1).GetComponent<Text>().text = quest.Description;
-        QuestInfo.transform.GetChild(2).GetComponent<Text>().text = quest.Reward.ToString();
-    }
-
-    //Quest 수락시 퀘스트 적용시켜주는 함수.
-    public void AcceptQuest()
-    {
-        SQuest myQuest = SelectItem.GetComponent<SQuest>();
-
-    }
-
-    public void OnClickExit()
-    {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        MQuest.LoadEvent -= ScrollViewInit;
-        MQuest.AddEvent -= AddScrollViewItem;
+        if (MGameplayStatic.GetPlayerState() == null) return;
+        MGameplayStatic.GetPlayerState().CurrentQuest.Add(item);
+        if (AddEvent != null)
+        {
+            AddEvent(item);
+        }
     }
 }

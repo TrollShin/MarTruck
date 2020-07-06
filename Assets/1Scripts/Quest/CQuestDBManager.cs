@@ -79,8 +79,10 @@ public class CQuestDBManager
         while (dataReader.Read())
         {
             SQuest item = new SQuest();
+            item.QuestIndex = dataReader.GetInt32(0);
             item.Name = dataReader.GetString(1);
             item.Description = dataReader.GetString(2);
+            item.LimitLV = dataReader.GetInt32(3);
 
             questList.Add(item);
         }

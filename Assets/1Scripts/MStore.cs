@@ -2,24 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct SStoreInfo
-{
-    public List<SQuest> QuestList;
-    public EStoreLV StoreLV;
-
-    public SStoreInfo(List<SQuest> QuestList, EStoreLV StoreLV)
-    {
-        this.QuestList = QuestList.ToArray().Clone() as List<SQuest>;
-        this.StoreLV = StoreLV;
-    }
-
-    public SStoreInfo(SStoreInfo StoreInfo)
-    {
-        this.QuestList = StoreInfo.QuestList;
-        this.StoreLV = StoreInfo.StoreLV;
-    }
-}
-
 public enum EStoreLV
 {
     MomNPopStore,
@@ -29,43 +11,67 @@ public enum EStoreLV
 
 public class MStore : MonoBehaviour
 {
-    private SStoreInfo StoreInfo;
 
     public GameObject[] Store;
+
+    public GameObject Floors;
+
+    private MQuestController QuestController;
+
+    private Coroutine CreateQuest;
+
+    private void Awake()
+    {
+        CQuestDBManager.GetInstance().DBCreate();
+        QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
+
+        CUserInfo.GetInstance().CarLv = 0;
+        CUserInfo.GetInstance().StoreLv = 0;
+        CUserInfo.GetInstance().QuestLst = new List<SQuest>();
+
+        MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
+    }
+
+    private void OnDisable()
+    {
+        MStoreUIFunctionLibrary.StoreEvent -= StoreUpgrade;
+    }
 
     private void Start()
     {
         StoreInit();
-        StoreInfo.QuestList = CQuestDBManager.GetInstance().ReadAllQuest();
+
+        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
     }
 
+    //시작 시 마트 셋팅해주는 함수.
     private void StoreInit()
     {
-        //if(게임 세이브가 존재할경우)
-        //StoreInfo = (gameData)
+        Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+    }
 
-        //임시
-        List<SQuest> q = new List<SQuest>();
-        StoreInfo.QuestList = q;
-        StoreInfo.StoreLV = EStoreLV.MomNPopStore;
+    //마트를 업그레이드 하는 함수.
+    private void StoreUpgrade()
+    {
+        Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
-        Store[(int)StoreInfo.StoreLV].SetActive(true);
+        CUserInfo.GetInstance().StoreLv += 1;
+
+        StopCoroutine(CreateQuest);
+        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
+
+        Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if(Input.GetKeyDown(KeyCode.V))
         {
-            StoreUpgrade();
+            CSceneFunctionLibrary.ShowStoreMenu();
         }
-    }
-
-    private void StoreUpgrade()
-    {
-        Store[(int)StoreInfo.StoreLV].SetActive(false);
-
-        StoreInfo.StoreLV += 1;
-
-        Store[(int)StoreInfo.StoreLV].SetActive(true);
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            CSceneFunctionLibrary.ShowRepairMenu();
+        }
     }
 }

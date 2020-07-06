@@ -5,23 +5,31 @@ using UnityEngine;
 public class MRepairShop : MonoBehaviour
 {
     public delegate void OnChangeCar();
-    public static event OnChangeCar EventUpgradeCar;
+    public static event OnChangeCar RepairEvent;
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CarUpgrade();
-        }
+        MRepairShopUIFunctionLibrary.RefuelEvent += Refueling;
     }
 
+    private void OnDisable()
+    {
+        MRepairShopUIFunctionLibrary.RefuelEvent -= Refueling;
+    }
+
+    //차를 업그레이드 해주는 함수.
     private void CarUpgrade()
     {
-        EventUpgradeCar();
+        RepairEvent();
     }
 
+    //차의 연료를 채워주는 함수.
     private void Refueling()
     {
-
+        CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
+        if(PlayerState != null)
+        {
+            PlayerState.CurrentCar.CarInfo.Fuel = PlayerState.CurrentCar.CarInfo.MaxFuel;
+        }
     }
 }

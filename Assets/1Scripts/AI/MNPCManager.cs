@@ -32,7 +32,7 @@ public class MNPCManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        TrafficLightSignal.OnSignalChanged -= OnSignalChange;
+        TrafficLightSignal.OnSignalChanged -= OnSignalChange;        
     }
 
     private Transform GetDestination()
@@ -43,6 +43,7 @@ public class MNPCManager : MonoBehaviour
 
     private void ChangeNpcDestination(MNPCWalker _Walker)
     {        
+        //NPC가 NPCArea 밖에 있다면 안으로 가지고옴
         if(Vector3.Distance(_Walker.transform.position, DestinationArea.transform.position) > DestinationArea.Radius)
         {
             _Walker.transform.position = GetDestination().position;
@@ -54,7 +55,6 @@ public class MNPCManager : MonoBehaviour
     //신호는 차량기준
     private void OnSignalChange(ETrafficLightState _Signal)
     {
-        Debug.Log("In MNPC Manager" + _Signal);
         if (_Signal == ETrafficLightState.Red)
         {
             ChangeAllAgentsAreaMask(EAreaMask.Walkable_CrossWalk);
@@ -65,6 +65,7 @@ public class MNPCManager : MonoBehaviour
         }
     }
 
+    //신호위반 하는 친구는 이 함수에서 변하지않음
     private void ChangeAllAgentsAreaMask(EAreaMask _AreaMask)
     {
         for(int i = 0; i < MNPCWalkers.Length; i++)

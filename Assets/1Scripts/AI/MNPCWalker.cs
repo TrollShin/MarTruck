@@ -56,16 +56,18 @@ public class MNPCWalker : MonoBehaviour
         Agent.SetDestination(_Transform.position);
     }
 
-    public void ChangeAreaMask(EAreaMask AreaMask)
+    //AreaMask에 대한 정보는 EAreaMask에서
+    public void ChangeAreaMask(EAreaMask _AreaMask)
     {
         if (IsJayWalker) return;
 
-        OriginalyAreaMask = AreaMask;
+        OriginalyAreaMask = _AreaMask;
         Agent.areaMask = (int)OriginalyAreaMask;
 
         Agent.SetDestination(Agent.destination);
     }
 
+    //NPC가 목적지에 도착했는지 확인하는 코루틴
     IEnumerator CheckAgentArrive()
     {
         yield return CheckDelayTime;

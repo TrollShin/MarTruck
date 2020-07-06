@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3279745108554270035}
   - component: {fileID: 3279745108559276115}
   - component: {fileID: -2055810263696024178}
+  - component: {fileID: 3978588695325665685}
   m_Layer: 0
   m_Name: school
   m_TagString: Untagged
@@ -118,3 +119,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.283253, y: 1.1550065, z: 1.8746939}
   m_Center: {x: -2.446929, y: 0.57750326, z: 0.011038902}
+--- !u!114 &3978588695325665685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279745108552014739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

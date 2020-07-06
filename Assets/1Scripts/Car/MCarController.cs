@@ -11,56 +11,69 @@ public enum ECarLV
 
 public class MCarController : MonoBehaviour
 {
-    private ECarLV CarLV;
-
     private MDriftCamera driftCamera;
 
     private List<GameObject> Cars = new List<GameObject>();
 
-    void Start()
+    private void Awake()
     {
         driftCamera = GetComponent<MDriftCamera>();
 
+        MRepairShopUIFunctionLibrary.UpgradeEvent += UpgradeCar;
+    }
+
+    private void Start()
+    {
         CarInit();
-        MRepairShop.EventUpgradeCar += UpgradeCar;
+    }
+
+    private void OnDisable()
+    {
+        MRepairShopUIFunctionLibrary.UpgradeEvent -= UpgradeCar;
     }
 
     //Car를 초기화해주는 함수.
     private void CarInit()
     {
-        CarLV = ECarLV.Porter;
-
         for (int i = 0; i < transform.childCount ; i++)
         {
             Cars.Add(transform.GetChild(i).gameObject);
         }
-
-        SetCar(CarLV);
+        CarSetting();
     }
 
-    //ECarLV에 맞춰 Car를 설정해주는 함수.
-    private void SetCar(ECarLV lv)
+    //CarLV에 맞춰 Car를 설정해주는 함수.
+    private void CarSetting()
     {
+        if(MGameplayStatic.GetPlayerState() == null)
+        {
+            Debug.LogError("MGameplayStatic 인스턴스를 생성해주세요.");
+            return;
+        }
+
         for (int i = 0; i < Cars.Count; i++)
         {
-            if (i.Equals((int)lv))
+            if (i.Equals(CUserInfo.GetInstance().CarLv))
             {
-                Cars[(int)lv].SetActive(true);
+                Cars[i].SetActive(true);
+
+                MGameplayStatic.GetPlayerState().CurrentCar = Cars[i].GetComponent<MCar>();
+                SetCamera(Cars[i]);
             }
             else
             {
                 Cars[i].SetActive(false);
             }
         }
-
-        SetCamera(Cars[(int)CarLV]);
     }
 
     //Car를 업그레이드 하는 함수.
     private void UpgradeCar()
     {
-        CarLV++;
-        SetCar(CarLV);
+        CUserInfo.GetInstance().CarLv++;
+        Cars[CUserInfo.GetInstance().CarLv].transform.position = Cars[CUserInfo.GetInstance().CarLv - 1].transform.position;
+        Cars[CUserInfo.GetInstance().CarLv].transform.rotation = Cars[CUserInfo.GetInstance().CarLv - 1].transform.rotation;
+        CarSetting();
     }
 
     //차를 받아 카메라 셋팅해주는 함수.

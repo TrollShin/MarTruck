@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class MNPCArea : MonoBehaviour
 {
-    private List<Transform> ActivedDestinations;
-    private WaitForSeconds CheckDelayTime;
+    private List<Transform> ActivedDestinations;// 영역안의 목적지들
+    private WaitForSeconds CheckDelayTime;    
     private Coroutine CheckDestinationCoroutine;
 
     [SerializeField]
+    [Tooltip("value 마다 체크함")]
     private float FloatCheckDelayTime;
 
     [Header("Search Range")]
     [Tooltip("Search Range")]
     [Range(40,150)]
+    //Area 의 영역 크기
     public float Radius;
 
     private void Awake()
@@ -27,6 +29,8 @@ public class MNPCArea : MonoBehaviour
         Collider[] SearchedObject = Physics.OverlapSphere(transform.position, Radius);
 
         ActivedDestinations.Clear();
+
+        if (SearchedObject.Length == 0) return;
 
         for(int i = 0; i < SearchedObject.Length; i++)
         {
@@ -62,6 +66,7 @@ public class MNPCArea : MonoBehaviour
     }
 
 #if UNITY_EDITOR
+    //에디터 상에서 Area의 크기를 보기위함
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
