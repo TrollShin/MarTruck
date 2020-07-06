@@ -67,35 +67,6 @@ public class MStore : MonoBehaviour
         //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            CSceneFunctionLibrary.ShowStoreMenu();
-        }
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            CSceneFunctionLibrary.ShowRepairMenu();
-        }
-    }
-
-    private void OnColisionStay(Collision other)
-    {
-       
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Car")
-        {
-            EntranceText.gameObject.SetActive(true);
-            EntranceText.text = gameObject.name + " 건물에 입장하려면\n" + "F키를 눌러주세요";
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                CSceneFunctionLibrary.ShowStoreMenu();
-            }
-        }
-    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Car")
@@ -108,6 +79,7 @@ public class MStore : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Car")

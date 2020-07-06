@@ -20,7 +20,7 @@ public class CSceneFunctionLibrary
         */
     public static void ShowSettingMenu()
     {
-        if (!SceneManager.GetActiveScene().buildIndex.Equals(1))
+        if (!SceneManager.GetActiveScene().name.Equals("Setting"))
         {
             SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
         }
@@ -33,7 +33,7 @@ public class CSceneFunctionLibrary
 
     public static void ShowRepairMenu()
     {
-        if(!SceneManager.GetActiveScene().buildIndex.Equals(3))
+        if(!SceneManager.GetActiveScene().name.Equals("RepairShopUI"))
         {
             SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
         }
@@ -46,7 +46,7 @@ public class CSceneFunctionLibrary
 
     public static void ShowStoreMenu()
     {
-        if(!SceneManager.GetActiveScene().buildIndex.Equals(2))
+        if(!SceneManager.GetActiveScene().name.Equals("StoreUI"))
         {
             SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
         }

@@ -24,7 +24,7 @@ public class MStoreUIFunctionLibrary : MonoBehaviour
 
     public void OnClickExit()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("StoreUI"));
         MQuestController.AddEvent = null;
     }
 
