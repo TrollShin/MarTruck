@@ -25,7 +25,11 @@ public class MRepairShop : MonoBehaviour
     //차를 업그레이드 해주는 함수.
     private void CarUpgrade()
     {
-        RepairEvent();
+        if(CUserInfo.GetInstance().Money >= 5)
+        {
+            CUserInfo.GetInstance().Money -= 5;
+            RepairEvent();
+        }
     }
 
     //차의 연료를 채워주는 함수.

@@ -19,7 +19,7 @@ public class MCarController : MonoBehaviour
     {
         driftCamera = GetComponent<MDriftCamera>();
 
-        MRepairShopUIFunctionLibrary.UpgradeEvent += UpgradeCar;
+        MRepairShopUIFunctionLibrary.UpgradeEvent += NextCarSetting;
     }
 
     private void Start()
@@ -29,7 +29,7 @@ public class MCarController : MonoBehaviour
 
     private void OnDisable()
     {
-        MRepairShopUIFunctionLibrary.UpgradeEvent -= UpgradeCar;
+        MRepairShopUIFunctionLibrary.UpgradeEvent -= NextCarSetting;
     }
 
     //Car를 초기화해주는 함수.
@@ -68,7 +68,7 @@ public class MCarController : MonoBehaviour
     }
 
     //Car를 업그레이드 하는 함수.
-    private void UpgradeCar()
+    private void NextCarSetting()
     {
         CUserInfo.GetInstance().CarLv++;
         Cars[CUserInfo.GetInstance().CarLv].transform.position = Cars[CUserInfo.GetInstance().CarLv - 1].transform.position;

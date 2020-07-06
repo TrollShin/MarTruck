@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 513604699894425355}
   - component: {fileID: 513604699894425352}
   - component: {fileID: 513604699894425354}
+  - component: {fileID: 3287760896141805606}
   - component: {fileID: 513604699894425365}
   - component: {fileID: 1322925288500265887}
   m_Layer: 0
@@ -292,6 +293,18 @@ MonoBehaviour:
     Fuel: 0
   WheelShape: {fileID: -927199367670048503, guid: 17cb89b4067559944a69f901aeffb633,
     type: 3}
+--- !u!114 &3287760896141805606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513604699894425353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3a8277dce1e44583270fce6a1af4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &513604699894425365
 BoxCollider:
   m_ObjectHideFlags: 0
