@@ -18,14 +18,30 @@ public class CSceneFunctionLibrary
     /**
         * Remaining Current Scene, Current Scene must have a Camera for overlay target.
         */
-    public static void ShowSettingMenu()
+    public static void LoadSceneSafety(string SceneName, Action<AsyncOperation> Completed)
     {
-        if (!SceneManager.GetActiveScene().name.Equals("Setting"))
+        if (IsSceneLoading(SceneName))
         {
-            SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
+            return;
+        }
+        if (!SceneManager.GetActiveScene().name.Equals(SceneName))
+        {
+            SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive).completed += Completed;
         }
     }
-
+    public static bool IsSceneLoading(string SceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (SceneManager.GetSceneAt(i).name.Equals(SceneName))
+                return true;
+        }
+        return false;
+    }
+    public static void ShowSettingMenu()
+    {
+        LoadSceneSafety("Setting", ShowSettingMenu_completed);
+    }
     private static void ShowSettingMenu_completed(AsyncOperation obj)
     {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Setting")); // Must be Active Scene for instantiate prefabs
@@ -33,10 +49,7 @@ public class CSceneFunctionLibrary
 
     public static void ShowRepairMenu()
     {
-        if(!SceneManager.GetActiveScene().name.Equals("RepairShopUI"))
-        {
-            SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
-        }
+        LoadSceneSafety("RepairShopUI", ShowRepairMenu_completed);
     }
 
     private static void ShowRepairMenu_completed(AsyncOperation obj)
@@ -46,10 +59,7 @@ public class CSceneFunctionLibrary
 
     public static void ShowStoreMenu()
     {
-        if(!SceneManager.GetActiveScene().name.Equals("StoreUI"))
-        {
-            SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
-        }
+        LoadSceneSafety("StoreUI", ShowStoreMenu_completed);
     }
 
     private static void ShowStoreMenu_completed(AsyncOperation obj)

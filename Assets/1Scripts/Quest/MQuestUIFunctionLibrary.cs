@@ -69,6 +69,8 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     {
         if (CUserInfo.GetInstance().QuestLst.Count >= 3) return;
 
+        if (SelectItem == null) return;
+
         SQuest myQuest = SelectItem.GetComponent<MStructure>().Quset;
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);

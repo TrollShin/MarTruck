@@ -31,6 +31,7 @@ public class MStore : MonoBehaviour
 
         CUserInfo.GetInstance().CarLv = 0;
         CUserInfo.GetInstance().StoreLv = 0;
+        CUserInfo.GetInstance().Money = 6;
         CUserInfo.GetInstance().QuestLst = new List<SQuest>();
 
         MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
@@ -57,14 +58,18 @@ public class MStore : MonoBehaviour
     //마트를 업그레이드 하는 함수.
     private void StoreUpgrade()
     {
-        //Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
+        if (CUserInfo.GetInstance().Money >= 5)
+        {
+            CUserInfo.GetInstance().Money -= 5;
+            //Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
-        CUserInfo.GetInstance().StoreLv += 1;
+            CUserInfo.GetInstance().StoreLv += 1;
 
-        StopCoroutine(CreateQuest);
-        CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
+            StopCoroutine(CreateQuest);
+            CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
 
-        //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+            //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        }
     }
 
     private void OnTriggerStay(Collider other)

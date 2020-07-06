@@ -13,14 +13,14 @@ public class MQuestController
 
     private GameObject Floors;
 
-    //private int[,] ExceptionPos = new int[,]{
-    //    { 0, 0 },
-    //    { 1, 1 },
-    //    { 2, 4 },
-    //    { 2, -4},
-    //    { -2, 1 },
-    //    { -3, -2 },
-    //};
+    private int[,] ExceptionPos = new int[,]{
+        { 0, 0 },
+        { 1, 1 },
+        { 2, 4 },
+        { 2, -4},
+        { -2, 1 },
+        { -3, -2 },
+    };
 
     public MQuestController(List<SQuest> AllQuests, GameObject TargetFloors)
     {
@@ -34,7 +34,7 @@ public class MQuestController
     //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
     public IEnumerator CreateQuestCoroutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(CreateTime);
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(CreateTime);
         while (true)
         {
             if (MGameplayStatic.GetPlayerState().CurrentQuest.Count < 10)
@@ -63,8 +63,8 @@ public class MQuestController
         int xPosRandom = 0;
         int yPosRandom = 0;
         int StructureRandom = -1;
-        //bool isSuccessRandom = false;
-        while (true)
+        bool isSuccessRandom = false;
+        while (!isSuccessRandom)
         {
             xPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
             yPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
@@ -73,12 +73,17 @@ public class MQuestController
             {
                 break;
             }
-            //for (int i = 0; i < ExceptionPos.GetLength(0); i++)
-            //{
-                //if (xPosRandom == ExceptionPos[i, 0] && yPosRandom == ExceptionPos[i, 1])
-                //{
-                //}
-            //}
+            for (int i = 0; i < ExceptionPos.GetLength(0); i++)
+            {
+                if (xPosRandom == ExceptionPos[i, 0] && yPosRandom == ExceptionPos[i, 1])
+                {
+                    break;
+                }
+                if (i == ExceptionPos.GetLength(0) - 1)
+                {
+                    isSuccessRandom = true;
+                }
+            }
         }
 
         for (int i=0; i < Floors.transform.childCount; i++)
