@@ -7,17 +7,28 @@ public class MQuestController
     public delegate void OnAddQuest(SQuest Quest);
     public static OnAddQuest AddEvent;
 
-    private float CreateTime = 3f;
+    private float CreateTime = 10f;
 
-    internal List<SQuest> AllQuestList = new List<SQuest>();
+    private List<SQuest> AllQuestList = new List<SQuest>();
 
-    public MQuestController(List<SQuest> AllQuests)
+    private GameObject Floors;
+
+    //private int[,] ExceptionPos = new int[,]{
+    //    { 0, 0 },
+    //    { 1, 1 },
+    //    { 2, 4 },
+    //    { 2, -4},
+    //    { -2, 1 },
+    //    { -3, -2 },
+    //};
+
+    public MQuestController(List<SQuest> AllQuests, GameObject TargetFloors)
     {
-
         for (int i = 0; i < AllQuests.Count; i++)
         {
             AllQuestList.Add(AllQuests[i]);
         }
+        Floors = TargetFloors;
     }
 
     //Quest를 랜덤으로 생성해서 리스트에 추가해주는 함수.
@@ -49,20 +60,42 @@ public class MQuestController
         }
 
         int QuestIndexRandom = Random.Range(0, PossibleQuestList.Count);
-        int xPosRandom;
-        int yPosRandom;
-        while(true)
+        int xPosRandom = 0;
+        int yPosRandom = 0;
+        int StructureRandom = -1;
+        //bool isSuccessRandom = false;
+        while (true)
         {
             xPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
             yPosRandom = Random.Range(-CUserInfo.GetInstance().StoreLv - 1, CUserInfo.GetInstance().StoreLv + 2);
+
             if(xPosRandom != 0 || yPosRandom != 0)
             {
                 break;
             }
+            //for (int i = 0; i < ExceptionPos.GetLength(0); i++)
+            //{
+                //if (xPosRandom == ExceptionPos[i, 0] && yPosRandom == ExceptionPos[i, 1])
+                //{
+                //}
+            //}
+        }
+
+        for (int i=0; i < Floors.transform.childCount; i++)
+        {
+            string name = Floors.transform.GetChild(i).gameObject.name;
+            string[] split = name.Split(',');
+            string[] splitL = split[0].Split('(');
+            string[] splitR = split[1].Split(')');
+            if (xPosRandom.ToString().Equals(splitL[1]) && yPosRandom.ToString().Equals(splitR[0])) 
+            {
+                MStructure[] Structures = Floors.transform.GetChild(i).GetComponentsInChildren<MStructure>();
+                StructureRandom = Random.Range(0, Structures.Length);
+            }
         }
 
         SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
-        item.TargetPos = new int[2] { xPosRandom, yPosRandom };
+        item.TargetPos = new int[3] { xPosRandom, yPosRandom, StructureRandom };
         item.IsSuccess = false;
         item.Reward = Mathf.Abs(xPosRandom) + Mathf.Abs(yPosRandom);
 
@@ -72,6 +105,7 @@ public class MQuestController
     //SQuest를 스크롤뷰에 쓰는 리스트에 추가해주는 함수.
     private void AddQuest(SQuest item)
     {
+        if (MGameplayStatic.GetPlayerState() == null) return;
         MGameplayStatic.GetPlayerState().CurrentQuest.Add(item);
         if (AddEvent != null)
         {

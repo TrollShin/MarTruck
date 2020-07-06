@@ -19,6 +19,8 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
 
     public GameObject Content;
 
+    public GameObject MinimapDisplay;
+
     private void Awake()
     {
         ScrollViewInit();
@@ -58,7 +60,7 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         QuestInfo.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
         QuestInfo.transform.GetChild(1).GetComponent<Text>().text = quest.Description;
         QuestInfo.transform.GetChild(2).GetComponent<Text>().text = quest.Reward.ToString();
-        QuestInfo.transform.GetChild(3).GetComponent<Text>().text = quest.TargetPos[0].ToString() + ", " + quest.TargetPos[1].ToString();
+        QuestInfo.transform.GetChild(3).GetComponent<Text>().text = "(" + quest.TargetPos[0].ToString() + ", " + quest.TargetPos[1].ToString() + ") 블록 " + quest.TargetPos[2] + " 건물";
     }
 
     //Quest 수락시 퀘스트 적용시켜주는 함수.
@@ -69,9 +71,40 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         SQuest myQuest = SelectItem.GetComponent<MStructure>().Quset;
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);
+        GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
+        Structure.GetComponent<MStructure>().Quset = myQuest;
+        MinimapMapping(Structure);
 
         AddListEvent(myQuest);
 
         Destroy(SelectItem);
+    }
+
+    private void MinimapMapping(GameObject Structure)
+    {
+        Transform DisplayPos = Structure.transform;
+
+        GameObject display = Instantiate(MinimapDisplay, DisplayPos.position + new Vector3(0, 20, 0), Quaternion.identity);
+
+        display.transform.SetParent(DisplayPos);
+    }
+
+    private GameObject GetTargetStructure(int xPos, int yPos, int StructureIndex)
+    {
+        GameObject Floors = GameObject.Find("StructureFloors");
+        GameObject Structure = null;
+        for (int i = 0; i < Floors.transform.childCount; i++)
+        {
+            string name = Floors.transform.GetChild(i).gameObject.name;
+            string[] split = name.Split(',');
+            string[] splitL = split[0].Split('(');
+            string[] splitR = split[1].Split(')');
+            if (xPos.ToString().Equals(splitL[1]) && yPos.ToString().Equals(splitR[0]))
+            {
+                MStructure[] Structures = Floors.transform.GetChild(i).GetComponentsInChildren<MStructure>();
+                Structure = Structures[StructureIndex].gameObject;
+            }
+        }
+        return Structure;
     }
 }

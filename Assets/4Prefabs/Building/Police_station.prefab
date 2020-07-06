@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2642919638089956105}
   - component: {fileID: 8615667576003528688}
   - component: {fileID: -1303829577094376136}
+  - component: {fileID: 1249809250165426267}
+  - component: {fileID: 8230687073733434089}
   m_Layer: 0
   m_Name: Police_station
   m_TagString: Untagged
@@ -95,3 +97,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02546681, y: 0.019372197, z: 0.020273017}
   m_Center: {x: -0.0020916457, y: 0.00074623094, z: 0.0054793665}
+--- !u!114 &1249809250165426267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047323471494558508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8230687073733434089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047323471494558508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02546681, y: 0.037091415, z: 0.020273017}
+  m_Center: {x: -0.002091646, y: -0.008113404, z: 0.00547938}

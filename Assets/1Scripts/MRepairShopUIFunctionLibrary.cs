@@ -14,7 +14,7 @@ public class MRepairShopUIFunctionLibrary : MonoBehaviour
 
     public void OnClickExit()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("StoreUI"));
     }
 
     public void OnUpgrade()

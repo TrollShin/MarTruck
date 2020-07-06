@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 6289623244482621572}
   - component: {fileID: 6289623244490071428}
   - component: {fileID: -3993746101607467576}
+  - component: {fileID: 6534658689248596487}
+  - component: {fileID: 3440103457008294071}
+  - component: {fileID: 8056781415366452357}
   m_Layer: 0
   m_Name: car_store
   m_TagString: Untagged
@@ -116,3 +119,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.837584, y: 0.8568536, z: 1.783778}
   m_Center: {x: -0.5828845, y: 0.4284268, z: 0.018365175}
+--- !u!114 &6534658689248596487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289623244480687684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa8780c3b7b77542bb144e85582c3d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3440103457008294071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289623244480687684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8056781415366452357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289623244480687684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8742194, y: 0.8568536, z: 2.906768}
+  m_Center: {x: -0.6271624, y: 0.4284268, z: 0.5845892}

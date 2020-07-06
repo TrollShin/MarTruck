@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3353609404586817936}
   - component: {fileID: 3353609404581516432}
   - component: {fileID: 104313656339443705}
+  - component: {fileID: 6274896826737851692}
   m_Layer: 0
   m_Name: tree_plantation
   m_TagString: Untagged
@@ -115,3 +116,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.8007133, y: 0.5333159, z: 3.6166897}
   m_Center: {x: -0.9861712, y: 0.26665843, z: 1.0487611}
+--- !u!65 &6274896826737851692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353609404588812112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8007138, y: 0.5333159, z: 4.5973153}
+  m_Center: {x: -0.9861713, y: 0.26665843, z: 1.5390741}

@@ -925,6 +925,8 @@ MonoBehaviour:
     type: 3}
   QuestInfo: {fileID: 939956434}
   Content: {fileID: 1308588796}
+  MinimapDisplay: {fileID: 5337117095297605681, guid: be06130f1b9164649a3ce72b9731414f,
+    type: 3}
 --- !u!1 &487040911
 GameObject:
   m_ObjectHideFlags: 0

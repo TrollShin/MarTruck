@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public enum EStoreLV
 {
     MomNPopStore,
@@ -12,16 +12,22 @@ public enum EStoreLV
 public class MStore : MonoBehaviour
 {
 
-    public GameObject[] Store;
+    //public GameObject[] Store;
+
+    public GameObject Floors;
 
     private MQuestController QuestController;
 
     private Coroutine CreateQuest;
 
+    public Text EntranceText;
+
     private void Awake()
     {
+        EntranceText = GameObject.Find("Canvas").transform.Find("EntranceText").GetComponent<Text>();
+
         CQuestDBManager.GetInstance().DBCreate();
-        QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest());
+        QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
 
         CUserInfo.GetInstance().CarLv = 0;
         CUserInfo.GetInstance().StoreLv = 0;
@@ -45,31 +51,41 @@ public class MStore : MonoBehaviour
     //시작 시 마트 셋팅해주는 함수.
     private void StoreInit()
     {
-        Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
     }
 
     //마트를 업그레이드 하는 함수.
     private void StoreUpgrade()
     {
-        Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
+        //Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
         CUserInfo.GetInstance().StoreLv += 1;
 
         StopCoroutine(CreateQuest);
         CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
 
-        Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
     }
 
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if(Input.GetKeyDown(KeyCode.V))
+        if (other.gameObject.tag == "Car")
         {
-            CSceneFunctionLibrary.ShowStoreMenu();
+            EntranceText.gameObject.SetActive(true);
+            EntranceText.text = gameObject.name + " 건물에 입장하려면\n" + "V키를 눌러주세요";
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                CSceneFunctionLibrary.ShowStoreMenu();
+            }
         }
-        if(Input.GetKeyDown(KeyCode.B))
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Car")
         {
-            CSceneFunctionLibrary.ShowRepairMenu();
+            EntranceText.gameObject.SetActive(false);
+        
         }
     }
 }
