@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MSensitivityOption : MSliderOption
 {
-    public Text DisplayText;
-
     protected override void InitOption()
     {
         SliderOption.minValue = 1;
