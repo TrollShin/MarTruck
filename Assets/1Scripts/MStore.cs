@@ -24,6 +24,8 @@ public class MStore : MonoBehaviour
 
     private void Awake()
     {
+        EntranceText = GameObject.Find("Canvas").transform.Find("EntranceText").GetComponent<Text>();
+
         CQuestDBManager.GetInstance().DBCreate();
         QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
 
