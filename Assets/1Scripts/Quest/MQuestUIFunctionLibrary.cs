@@ -78,6 +78,11 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         Structure.GetComponent<MStructure>().Quset = myQuest;
         MinimapMapping(Structure);
 
+        QuestInfo.transform.GetChild(0).GetComponent<Text>().text = null;
+        QuestInfo.transform.GetChild(1).GetComponent<Text>().text = null;
+        QuestInfo.transform.GetChild(2).GetComponent<Text>().text = null;
+        QuestInfo.transform.GetChild(3).GetComponent<Text>().text = null;
+
         AddListEvent(myQuest);
 
         Destroy(SelectItem);
