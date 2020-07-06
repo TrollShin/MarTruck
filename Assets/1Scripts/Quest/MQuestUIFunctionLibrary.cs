@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MQuestUIFunctionLibrary : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     private void AddScrollViewItem(SQuest quest)
     {
         GameObject index = Instantiate(QuestFrame, new Vector3(0, 0, 0), Quaternion.identity);
-        index.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
+        index.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = quest.Name;
         index.GetComponent<Button>().onClick.AddListener(ClickQuest);
         index.GetComponent<MStructure>().Quset = quest;
         index.transform.SetParent(Content.transform);
