@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6289623244490071428}
   - component: {fileID: -3993746101607467576}
   - component: {fileID: 6534658689248596487}
-  - component: {fileID: 3440103457008294071}
   - component: {fileID: 8056781415366452357}
   m_Layer: 0
   m_Name: car_store
@@ -129,18 +128,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa8780c3b7b77542bb144e85582c3d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3440103457008294071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6289623244480687684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &8056781415366452357
