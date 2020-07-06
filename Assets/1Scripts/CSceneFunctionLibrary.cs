@@ -56,4 +56,17 @@ public class CSceneFunctionLibrary
     {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("StoreUI")); // Must be Active Scene for instantiate prefabs
     }
+
+    public static void ShowPause()
+    {
+        if(!SceneManager.GetActiveScene().name.Equals("Pause"))
+        {
+            SceneManager.LoadSceneAsync("Pause", LoadSceneMode.Additive).completed += ShowPause_completed;
+        }
+    }
+
+    private static void ShowPause_completed(AsyncOperation obj)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Pause"));
+    }
 }
