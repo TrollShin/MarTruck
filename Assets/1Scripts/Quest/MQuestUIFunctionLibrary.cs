@@ -71,17 +71,17 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         SQuest myQuest = SelectItem.GetComponent<MStructure>().Quset;
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);
-
-        MinimapMapping(myQuest);
+        GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
+        Structure.GetComponent<MStructure>().Quset = myQuest;
+        MinimapMapping(Structure);
 
         AddListEvent(myQuest);
 
         Destroy(SelectItem);
     }
 
-    private void MinimapMapping(SQuest myQuest)
+    private void MinimapMapping(GameObject Structure)
     {
-        GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
         Transform DisplayPos = Structure.transform;
 
         GameObject display = Instantiate(MinimapDisplay, DisplayPos.position + new Vector3(0, 20, 0), Quaternion.identity);

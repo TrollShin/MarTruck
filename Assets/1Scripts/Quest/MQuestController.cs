@@ -13,14 +13,14 @@ public class MQuestController
 
     private GameObject Floors;
 
-    private int[,] ExceptionPos = new int[,]{
-        { 0, 0 },
-        { 1, 1 },
-        { 2, 4 },
-        { 2, -4},
-        { -2, 1 },
-        { -3, -2 },
-    };
+    //private int[,] ExceptionPos = new int[,]{
+    //    { 0, 0 },
+    //    { 1, 1 },
+    //    { 2, 4 },
+    //    { 2, -4},
+    //    { -2, 1 },
+    //    { -3, -2 },
+    //};
 
     public MQuestController(List<SQuest> AllQuests, GameObject TargetFloors)
     {
