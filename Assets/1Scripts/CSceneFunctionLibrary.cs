@@ -20,7 +20,10 @@ public class CSceneFunctionLibrary
         */
     public static void ShowSettingMenu()
     {
-        SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
+        if (!SceneManager.GetActiveScene().buildIndex.Equals(1))
+        {
+            SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
+        }
     }
 
     private static void ShowSettingMenu_completed(AsyncOperation obj)
@@ -30,7 +33,10 @@ public class CSceneFunctionLibrary
 
     public static void ShowRepairMenu()
     {
-        SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
+        if(!SceneManager.GetActiveScene().buildIndex.Equals(3))
+        {
+            SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
+        }
     }
 
     private static void ShowRepairMenu_completed(AsyncOperation obj)
@@ -40,7 +46,10 @@ public class CSceneFunctionLibrary
 
     public static void ShowStoreMenu()
     {
-        SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
+        if(!SceneManager.GetActiveScene().buildIndex.Equals(2))
+        {
+            SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
+        }
     }
 
     private static void ShowStoreMenu_completed(AsyncOperation obj)
