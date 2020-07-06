@@ -87,7 +87,7 @@ public class MCar : MonoBehaviour
     //차의 Torque를 리턴하는 함수.
     private float GetCarTorque()
     {
-        return CarInfo.Fuel > 0 ? CarInfo.Acceleration * Input.GetAxis("Vertical") : 0;
+        return (CarInfo.Fuel > 0) ? CarInfo.Acceleration * Input.GetAxis("Vertical") : 0;
     }
     private void EngineSound()
     {

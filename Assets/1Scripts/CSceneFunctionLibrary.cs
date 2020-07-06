@@ -20,10 +20,7 @@ public class CSceneFunctionLibrary
         */
     public static void ShowSettingMenu()
     {
-        if (!SceneManager.GetActiveScene().name.Equals("Setting"))
-        {
-            SceneManager.LoadSceneAsync("Setting", LoadSceneMode.Additive).completed += ShowSettingMenu_completed;
-        }
+        LoadSceneSafety("Setting", ShowSettingMenu_completed);
     }
 
     private static void ShowSettingMenu_completed(AsyncOperation obj)
@@ -33,9 +30,18 @@ public class CSceneFunctionLibrary
 
     public static void ShowRepairMenu()
     {
-        if(!SceneManager.GetActiveScene().name.Equals("RepairShopUI"))
+        LoadSceneSafety("RepairShopUI", ShowRepairMenu_completed);
+    }
+
+    public static void LoadSceneSafety(string SceneName, Action<AsyncOperation> Completed)
+    {
+        if (IsSceneLoading(SceneName))
         {
-            SceneManager.LoadSceneAsync("RepairShopUI", LoadSceneMode.Additive).completed += ShowRepairMenu_completed;
+            return;
+        }
+        if (!SceneManager.GetActiveScene().name.Equals(SceneName))
+        {
+            SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive).completed += Completed;
         }
     }
 
@@ -44,12 +50,19 @@ public class CSceneFunctionLibrary
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("RepairShopUI")); // Must be Active Scene for instantiate prefabs
     }
 
+    public static bool IsSceneLoading(string SceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (SceneManager.GetSceneAt(i).name.Equals(SceneName))
+                return true;
+        }
+        return false;
+    }
+
     public static void ShowStoreMenu()
     {
-        if(!SceneManager.GetActiveScene().name.Equals("StoreUI"))
-        {
-            SceneManager.LoadSceneAsync("StoreUI", LoadSceneMode.Additive).completed += ShowStoreMenu_completed;
-        }
+        LoadSceneSafety("StoreUI", ShowStoreMenu_completed);
     }
 
     private static void ShowStoreMenu_completed(AsyncOperation obj)

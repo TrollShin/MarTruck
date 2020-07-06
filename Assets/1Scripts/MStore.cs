@@ -29,8 +29,8 @@ public class MStore : MonoBehaviour
         CQuestDBManager.GetInstance().DBCreate();
         QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
 
-        CUserInfo.GetInstance().CarLv = 0;
-        CUserInfo.GetInstance().StoreLv = 0;
+        CUserInfo.GetInstance().CarLv = 1;
+        CUserInfo.GetInstance().StoreLv = 1;
         CUserInfo.GetInstance().QuestLst = new List<SQuest>();
 
         MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
