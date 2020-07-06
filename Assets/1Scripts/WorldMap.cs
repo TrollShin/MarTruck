@@ -14,7 +14,6 @@ public class WorldMap : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.M))
         {
-            Debug.Log(true);
             worldMap.SetActive(true);
         }
         else

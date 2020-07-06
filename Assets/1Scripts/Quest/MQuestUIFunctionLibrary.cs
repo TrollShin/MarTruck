@@ -47,7 +47,7 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         GameObject index = Instantiate(QuestFrame, new Vector3(0, 0, 0), Quaternion.identity);
         index.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = quest.Name;
         index.GetComponent<Button>().onClick.AddListener(ClickQuest);
-        index.GetComponent<MStructure>().Quset = quest;
+        index.GetComponent<MStructure>().Quest = quest;
         index.transform.SetParent(Content.transform);
         index.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
@@ -56,7 +56,7 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     private void ClickQuest()
     {
         SelectItem = EventSystem.current.currentSelectedGameObject;
-        SQuest quest = SelectItem.GetComponent<MStructure>().Quset;
+        SQuest quest = SelectItem.GetComponent<MStructure>().Quest;
 
         QuestInfo.transform.GetChild(0).GetComponent<Text>().text = quest.Name;
         QuestInfo.transform.GetChild(1).GetComponent<Text>().text = quest.Description;
@@ -71,11 +71,13 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
 
         if (SelectItem == null) return;
 
-        SQuest myQuest = SelectItem.GetComponent<MStructure>().Quset;
+        SQuest myQuest = SelectItem.GetComponent<MStructure>().Quest;
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);
         GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
-        Structure.GetComponent<MStructure>().Quset = myQuest;
+        Debug.Log(myQuest);
+        Debug.Log(Structure.name);
+        Structure.GetComponent<MStructure>().Quest = myQuest;
         MinimapMapping(Structure);
 
         QuestInfo.transform.GetChild(0).GetComponent<Text>().text = null;

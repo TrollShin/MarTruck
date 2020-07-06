@@ -38,7 +38,10 @@ public class MStructure : MonoBehaviour
 {
     public Text EntranceText;
 
-    public SQuest Quset;
+    public SQuest Quest;
+
+    public delegate void GetStructure(MStructure structure);
+    public static GetStructure StructEvent;
 
     private void Awake()
     {
@@ -47,6 +50,8 @@ public class MStructure : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (Quest.Equals(new SQuest())) return;
+
         if (other.gameObject.tag == "Car")
         {
             EntranceText.gameObject.SetActive(true);
@@ -54,7 +59,7 @@ public class MStructure : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.V))
             {
                 Time.timeScale = 0;
-                CSceneFunctionLibrary.ShowStoreMenu();
+                CSceneFunctionLibrary.ShowStructMenu(this);
             }
         }
     }

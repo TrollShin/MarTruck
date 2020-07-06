@@ -67,6 +67,20 @@ public class CSceneFunctionLibrary
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("StoreUI")); // Must be Active Scene for instantiate prefabs
     }
 
+    public static void ShowStructMenu(MStructure structure)
+    {
+        LoadSceneSafety("StructureUI", (obj) => 
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("StructureUI"));
+            MStructure.StructEvent(structure);
+        });
+    }
+
+    private static void ShowStructMenu_completed(AsyncOperation obj)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("StructureUI")); // Must be Active Scene for instantiate prefabs
+    }
+
     public static void ShowPause()
     {
         if(!SceneManager.GetActiveScene().name.Equals("Pause"))
