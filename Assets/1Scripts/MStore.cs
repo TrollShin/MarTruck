@@ -75,6 +75,7 @@ public class MStore : MonoBehaviour
             EntranceText.text = gameObject.name + " 건물에 입장하려면\n" + "V키를 눌러주세요";
             if (Input.GetKeyDown(KeyCode.V))
             {
+                Time.timeScale = 0;
                 CSceneFunctionLibrary.ShowStoreMenu();
             }
         }
