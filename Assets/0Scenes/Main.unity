@@ -9655,11 +9655,6 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 1536
       objectReference: {fileID: 0}
-    - target: {fileID: 7997821993433164895, guid: 3f95107a2905f2043bea65ab70cde7f9,
-        type: 3}
-      propertyPath: CarInfo.MaxFuel
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f95107a2905f2043bea65ab70cde7f9, type: 3}
 --- !u!1001 &411958741
@@ -44455,12 +44450,12 @@ PrefabInstance:
     - target: {fileID: 6289623244480197220, guid: f4f129309ceb44e4cb6318cc48064f38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0006
+      value: -0.0006000011
       objectReference: {fileID: 0}
     - target: {fileID: 6289623244480197220, guid: f4f129309ceb44e4cb6318cc48064f38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6289623244480197220, guid: f4f129309ceb44e4cb6318cc48064f38,
         type: 3}
@@ -44895,12 +44890,12 @@ PrefabInstance:
     - target: {fileID: 7175000127704718631, guid: f5d3c4444ac0abe45ac1f02a059f59ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0063
+      value: -0.0057999995
       objectReference: {fileID: 0}
     - target: {fileID: 7175000127704718631, guid: f5d3c4444ac0abe45ac1f02a059f59ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04
+      value: -0.040002346
       objectReference: {fileID: 0}
     - target: {fileID: 7175000127704718631, guid: f5d3c4444ac0abe45ac1f02a059f59ea,
         type: 3}
@@ -44925,7 +44920,7 @@ PrefabInstance:
     - target: {fileID: 7175000127704718631, guid: f5d3c4444ac0abe45ac1f02a059f59ea,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7175000127704718631, guid: f5d3c4444ac0abe45ac1f02a059f59ea,
         type: 3}
