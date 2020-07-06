@@ -12,7 +12,7 @@ public enum EStoreLV
 public class MStore : MonoBehaviour
 {
 
-    //public GameObject[] Store;
+    public GameObject[] RoadBlocks;
 
     public GameObject Floors;
 
@@ -52,7 +52,17 @@ public class MStore : MonoBehaviour
     //시작 시 마트 셋팅해주는 함수.
     private void StoreInit()
     {
-        //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        for(int i=0; i<RoadBlocks.Length; i++)
+        {
+            if(i == CUserInfo.GetInstance().StoreLv)
+            {
+                RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(true);
+            }
+            else
+            {
+                RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(false);
+            }
+        }
     }
 
     //마트를 업그레이드 하는 함수.
@@ -61,14 +71,35 @@ public class MStore : MonoBehaviour
         if (CUserInfo.GetInstance().Money >= 5)
         {
             CUserInfo.GetInstance().Money -= 5;
-            //Store[CUserInfo.GetInstance().StoreLv].SetActive(false);
+            RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
             CUserInfo.GetInstance().StoreLv += 1;
 
             StopCoroutine(CreateQuest);
             CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
 
-            //Store[CUserInfo.GetInstance().StoreLv].SetActive(true);
+            RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(true);
+        }
+    }
+
+    private void CompleteQuest()
+    {
+        List<SQuest> QuestList = CUserInfo.GetInstance().QuestLst;
+        for (int i = 0; i < QuestList.Count; i++)
+        {
+            if (QuestList[i].IsSuccess)
+            {
+                CUserInfo.GetInstance().Money += QuestList[i].Reward;
+                QuestList.RemoveAt(i);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Car")
+        {
+            CompleteQuest();
         }
     }
 
