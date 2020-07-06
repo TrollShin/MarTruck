@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8124330027967023799}
   - component: {fileID: 1990826355064458186}
   - component: {fileID: 1863292286484429400}
+  - component: {fileID: 539207487458214744}
   m_Layer: 0
   m_Name: Market
   m_TagString: Untagged
@@ -143,3 +144,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Store: []
   Floors: {fileID: 0}
+--- !u!65 &539207487458214744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108263700185577636}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.817085, y: 18.047089, z: 35.444786}
+  m_Center: {x: 0.6757202, y: 8.523544, z: -4.9082527}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3279745108559276115}
   - component: {fileID: -2055810263696024178}
   - component: {fileID: 3978588695325665685}
+  - component: {fileID: 6944164409561885812}
   m_Layer: 0
   m_Name: school
   m_TagString: Untagged
@@ -131,3 +132,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe25e66c5b0883488fdbef7f550e7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &6944164409561885812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279745108552014739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.2832522, y: 1.1550066, z: 3.8361795}
+  m_Center: {x: -2.4469292, y: 0.5775033, z: 0.9917827}
