@@ -97,8 +97,6 @@ public class MQuestController
             }
         }
 
-        
-
         SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
         item.TargetPos = new int[3] { xPosRandom, yPosRandom, StructureRandom };
         item.IsSuccess = false;
