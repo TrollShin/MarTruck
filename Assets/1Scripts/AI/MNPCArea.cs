@@ -19,7 +19,7 @@ public class MNPCArea : MonoBehaviour
     //Area 의 영역 크기
     public float Radius;
 
-    private void Awake()
+    private void OnEnable()
     {
         ActivedDestinations = new List<Transform>();
         CheckDelayTime = new WaitForSeconds(FloatCheckDelayTime);
@@ -73,7 +73,7 @@ public class MNPCArea : MonoBehaviour
     public void StopCoroutine()
     {
         IsCoroutineStart = false;
-        StopCoroutine(CheckDestinationCoroutine);
+        if(CheckDestinationCoroutine != null) StopCoroutine(CheckDestinationCoroutine);
     }
 
 #if UNITY_EDITOR

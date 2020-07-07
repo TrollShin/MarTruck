@@ -108,6 +108,17 @@ public class CSaveGame
         return true;
     }
 
+    public void ResetData()
+    {
+        CUserInfo.GetInstance().CarLv = 0;
+        CUserInfo.GetInstance().StoreLv = 0;
+        CUserInfo.GetInstance().Money = 11;
+
+        Save();
+
+        CSceneFunctionLibrary.LoadTitle();
+    }
+
     private string GetFilePath(ESaveFileName _ESaveFileName)
     {
         return string.Format("{0}/{1}.txt", FilePath, _ESaveFileName.ToString());
@@ -115,13 +126,11 @@ public class CSaveGame
 
     private bool CheckFilePath(params string[] _FilePath)
     {
-        bool result = false;
-
         for(int i = 0; i < _FilePath.Length; i++)
         {
-            result = File.Exists(_FilePath[i]);
+            if (!File.Exists(_FilePath[i])) return false;
         }
 
-        return result;
+        return true;
     }
 }

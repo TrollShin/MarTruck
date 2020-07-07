@@ -8,7 +8,7 @@ public class MPenaltyController : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Agent"))
         {
-            CUserInfo.GetInstance().Money -= 3;
+            CUserInfo.GetInstance().Penalty(3);
         }
     }
 }

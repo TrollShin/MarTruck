@@ -22,4 +22,16 @@ public class CUserInfo
 
         return instance;
     }
+
+    public void Penalty(int _Money)
+    {
+        if(Money < _Money)
+        {
+            CSaveGame.GetInstance().ResetData();
+        }
+        else
+        {
+            Money -= _Money;
+        }
+    }
 }

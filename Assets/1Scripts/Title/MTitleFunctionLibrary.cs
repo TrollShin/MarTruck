@@ -45,10 +45,11 @@ public class MTitleFunctionLibrary : MonoBehaviour
     public void OnClickContinue()
     {
         CSaveGame SaveGame = CSaveGame.GetInstance();
-        if(!SaveGame.LoadUserInfo())
+        if(SaveGame.LoadUserInfo())
         {
             SaveGame.Save();
             SaveGame.LoadUserInfo();
+            Debug.Log(CUserInfo.GetInstance().Money);
         }
 
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
