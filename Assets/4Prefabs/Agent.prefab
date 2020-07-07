@@ -83,7 +83,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.020528771
+  - screenRelativeHeight: 0.004217861
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2476013790621562084}
@@ -96,7 +96,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5278687663039569087}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1, z: 0.4}
