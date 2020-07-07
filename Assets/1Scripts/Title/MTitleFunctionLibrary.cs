@@ -10,6 +10,7 @@ public class MTitleFunctionLibrary : MonoBehaviour
     private void Awake()
     {
         CheckDataDeleteUI.SetActive(false);
+        CQuestDBManager.GetInstance().DBCreate();
         CSaveGame SaveGame = CSaveGame.GetInstance();
         if (!SaveGame.LoadControlSetting())
         {
