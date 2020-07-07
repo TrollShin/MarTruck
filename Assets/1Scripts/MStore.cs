@@ -25,8 +25,14 @@ public class MStore : MonoBehaviour
     private void Awake()
     {
         EntranceText = GameObject.Find("Canvas").transform.Find("EntranceText").GetComponent<Text>();
-
+        CQuestDBManager.GetInstance().DBCreate();
         QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
+
+        CUserInfo.GetInstance().CarLv = 0;
+        CUserInfo.GetInstance().StoreLv = 0;
+        CUserInfo.GetInstance().Money = 11;
+        CUserInfo.GetInstance().QuestLst = new List<SQuest>();
+
 
         MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
     }
@@ -48,13 +54,13 @@ public class MStore : MonoBehaviour
     {
         for(int i=0; i<RoadBlocks.Length; i++)
         {
-            if(i == CUserInfo.GetInstance().StoreLv)
+            if(i.Equals(CUserInfo.GetInstance().StoreLv))
             {
-                RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(true);
+                RoadBlocks[i].SetActive(true);
             }
             else
             {
-                RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(false);
+                RoadBlocks[i].SetActive(false);
             }
         }
     }
@@ -65,14 +71,13 @@ public class MStore : MonoBehaviour
         if (CUserInfo.GetInstance().Money >= 5)
         {
             CUserInfo.GetInstance().Money -= 5;
-            RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(false);
 
             CUserInfo.GetInstance().StoreLv += 1;
 
             StopCoroutine(CreateQuest);
             CreateQuest = StartCoroutine(QuestController.CreateQuestCoroutine());
 
-            RoadBlocks[CUserInfo.GetInstance().StoreLv].SetActive(true);
+            StoreInit();
         }
     }
 
@@ -84,7 +89,9 @@ public class MStore : MonoBehaviour
             if (QuestList[i].IsSuccess)
             {
                 CUserInfo.GetInstance().Money += QuestList[i].Reward;
+                Destroy(MQuestUIFunctionLibrary.GetTargetStructure(QuestList[i].TargetPos[0], QuestList[i].TargetPos[1], QuestList[i].TargetPos[2]).transform.GetChild(0).gameObject);
                 QuestList.RemoveAt(i);
+                MGameplayStatic.GetPlayerState().QuestSlotList.UpdateQuestList(CUserInfo.GetInstance().QuestLst);
             }
         }
     }

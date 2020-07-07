@@ -158,5 +158,10 @@ public class MCar : MonoBehaviour
         Camera cam = transform.GetComponentInChildren<Camera>();
         cam.transform.position = transform.position + new Vector3(0, 100, 0);
         cam.transform.LookAt(transform);
+
+        GameObject icon = cam.transform.parent.GetChild(1).gameObject;
+        icon.transform.position = transform.position + new Vector3(0, 6, 0);
+        icon.transform.rotation = transform.rotation;
+        icon.transform.LookAt(transform);
     }
 }

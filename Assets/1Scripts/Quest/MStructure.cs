@@ -50,7 +50,11 @@ public class MStructure : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Quest.Equals(new SQuest())) return;
+        if (Quest.Equals(new SQuest()))
+        {
+            EntranceText.text = null;
+            return;
+        }
 
         if (other.gameObject.tag == "Car")
         {

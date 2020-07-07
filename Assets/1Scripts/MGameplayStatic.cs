@@ -10,6 +10,7 @@ public class MGameplayStatic : MonoBehaviour
 {
     private static MGameplayStatic Instance;
     private CPlayerState PlayerState;
+    public MQuestList QuestSlotList;
 
     private void Awake() // Allow access only scene MGameplayStatic Component has
     {
@@ -28,6 +29,7 @@ public class MGameplayStatic : MonoBehaviour
         {
             Instance.PlayerState = new CPlayerState();
             Instance.PlayerState.Init();
+            Instance.PlayerState.LoadQuestSlotList(Instance.QuestSlotList);
         }
 
         return Instance.PlayerState;
