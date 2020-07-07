@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2987137840883510809}
   m_Layer: 0
-  m_Name: Minimap
+  m_Name: Minimap_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,13 +57,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2669869721904381652}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0.0000000032305247, w: 0.70710677}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 4}
   m_Children: []
   m_Father: {fileID: 2987137840883510809}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!33 &2669869721904381656
 MeshFilter:
   m_ObjectHideFlags: 0
