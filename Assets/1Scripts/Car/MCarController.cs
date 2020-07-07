@@ -20,27 +20,30 @@ public class MCarController : MonoBehaviour
     private void Awake()
     {
         driftCamera = GetComponent<MDriftCamera>();
+        MRepairShop.RepairEvent += NextCarSetting;
+    }
 
-        MRepairShopUIFunctionLibrary.UpgradeEvent += NextCarSetting;
+    private void OnDisable()
+    {
+        MRepairShop.RepairEvent -= NextCarSetting;
     }
 
     private void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            MGameplayStatic.GetPlayerState().CurrentCar.transform.position = StartPosition.transform.position;
-            MGameplayStatic.GetPlayerState().CurrentCar.transform.rotation = StartPosition.transform.rotation;
+            if(CUserInfo.GetInstance().Money >= 2)
+            {
+                CUserInfo.GetInstance().Money -= 2;
+                MGameplayStatic.GetPlayerState().CurrentCar.transform.position = StartPosition.transform.position;
+                MGameplayStatic.GetPlayerState().CurrentCar.transform.rotation = StartPosition.transform.rotation;
+            }
         }
     }
 
     private void Start()
     {
         CarInit();
-    }
-
-    private void OnDisable()
-    {
-        MRepairShopUIFunctionLibrary.UpgradeEvent -= NextCarSetting;
     }
 
     //Car를 초기화해주는 함수.

@@ -15,7 +15,7 @@ public class MStructureUIFunctionLibrary : MonoBehaviour
 
     void Awake()
     {
-        MStructure.StructEvent += GetQuest;
+        MStructure.StructEvent = GetQuest;
     }
 
     public void OnClickExit()
@@ -75,6 +75,6 @@ public class MStructureUIFunctionLibrary : MonoBehaviour
 
     private void OnDestroy()
     {
-        MStructure.StructEvent -= GetQuest;
+        MStructure.StructEvent = GetQuest;
     }
 }

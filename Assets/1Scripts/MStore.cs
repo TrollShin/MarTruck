@@ -28,12 +28,14 @@ public class MStore : MonoBehaviour
         CQuestDBManager.GetInstance().DBCreate();
         QuestController = new MQuestController(CQuestDBManager.GetInstance().ReadAllQuest(), Floors);
 
-        MStoreUIFunctionLibrary.StoreEvent += StoreUpgrade;
+        CUserInfo.GetInstance().Money = 60;
+
+        MStoreUIFunctionLibrary.StoreEvent = StoreUpgrade;
     }
 
     private void OnDisable()
     {
-        MStoreUIFunctionLibrary.StoreEvent -= StoreUpgrade;
+        MStoreUIFunctionLibrary.StoreEvent = null;
     }
 
     private void Start()
@@ -62,6 +64,8 @@ public class MStore : MonoBehaviour
     //마트를 업그레이드 하는 함수.
     private void StoreUpgrade()
     {
+        if (CUserInfo.GetInstance().StoreLv >= typeof(EStoreLV).GetEnumValues().Length - 1) return;
+
         if (CUserInfo.GetInstance().Money >= 5)
         {
             CUserInfo.GetInstance().Money -= 5;

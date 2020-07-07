@@ -13,18 +13,21 @@ public class MRepairShop : MonoBehaviour
     {
         EntranceText = GameObject.Find("Canvas").transform.Find("EntranceText").GetComponent<Text>();
 
-
-        MRepairShopUIFunctionLibrary.RefuelEvent += Refueling;
+        MRepairShopUIFunctionLibrary.UpgradeEvent = CarUpgrade;
+        MRepairShopUIFunctionLibrary.RefuelEvent = Refueling;
     }
 
     private void OnDisable()
     {
-        MRepairShopUIFunctionLibrary.RefuelEvent -= Refueling;
+        MRepairShopUIFunctionLibrary.UpgradeEvent = null;
+        MRepairShopUIFunctionLibrary.RefuelEvent = null;
     }
 
     //차를 업그레이드 해주는 함수.
     private void CarUpgrade()
     {
+        if (CUserInfo.GetInstance().CarLv >= typeof(ECarLV).GetEnumValues().Length - 1) return;
+
         if(CUserInfo.GetInstance().Money >= 5)
         {
             CUserInfo.GetInstance().Money -= 5;
@@ -36,10 +39,14 @@ public class MRepairShop : MonoBehaviour
     //차의 연료를 채워주는 함수.
     private void Refueling()
     {
-        CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
-        if(PlayerState != null)
+        if (CUserInfo.GetInstance().Money >= 2)
         {
-            PlayerState.CurrentCar.CarInfo.Fuel = PlayerState.CurrentCar.CarInfo.MaxFuel;
+            CUserInfo.GetInstance().Money -= 2;
+            CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
+            if (PlayerState != null)
+            {
+                PlayerState.CurrentCar.CarInfo.Fuel = PlayerState.CurrentCar.CarInfo.MaxFuel;
+            }
         }
     }
     private void OnTriggerStay(Collider other)

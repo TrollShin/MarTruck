@@ -66,7 +66,6 @@ public class MCar : MonoBehaviour
     {
         CarInfo.Fuel = CarInfo.MaxFuel;
         audioSource = GetComponent<AudioSource>();
-        GetComponentInChildren<ParticleSystem>().Play();
     }
 
     void Start()
@@ -162,7 +161,5 @@ public class MCar : MonoBehaviour
 
         GameObject icon = cam.transform.parent.GetChild(1).gameObject;
         icon.transform.position = transform.position + new Vector3(0, 6, 0);
-        icon.transform.rotation = transform.rotation;
-        icon.transform.LookAt(transform);
     }
 }
