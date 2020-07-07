@@ -29,7 +29,7 @@ public class MRepairShop : MonoBehaviour
         {
             CUserInfo.GetInstance().Money -= 5;
             RepairEvent();
-            MGameplayStatic.GetPlayerState().CurrentCar.GetComponentInChildren<ParticleSystem>().Play();
+            MGameplayStatic.GetPlayerState().CurrentCar.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 
