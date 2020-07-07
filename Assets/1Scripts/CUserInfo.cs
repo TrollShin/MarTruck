@@ -13,6 +13,13 @@ public class CUserInfo
 
     private static CUserInfo instance;
 
+    public CUserInfo()
+    {
+        Money = 11;
+        CarLv = 0;
+        StoreLv = 0;
+    }
+
     public static CUserInfo GetInstance()
     {
         if(instance == null)
