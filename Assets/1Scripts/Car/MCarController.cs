@@ -15,11 +15,22 @@ public class MCarController : MonoBehaviour
 
     private List<GameObject> Cars = new List<GameObject>();
 
+    public GameObject StartPosition;
+
     private void Awake()
     {
         driftCamera = GetComponent<MDriftCamera>();
 
         MRepairShopUIFunctionLibrary.UpgradeEvent += NextCarSetting;
+    }
+
+    private void FixedUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            MGameplayStatic.GetPlayerState().CurrentCar.transform.position = StartPosition.transform.position;
+            MGameplayStatic.GetPlayerState().CurrentCar.transform.rotation = StartPosition.transform.rotation;
+        }
     }
 
     private void Start()

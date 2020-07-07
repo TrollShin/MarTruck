@@ -77,23 +77,27 @@ public class MQuestController
                 }
                 if (i == ExceptionPos.GetLength(0) - 1)
                 {
-                    isSuccessRandom = true;
+                    for (int j = 0; j < Floors.transform.childCount; j++)
+                    {
+                        string name = Floors.transform.GetChild(j).gameObject.name;
+                        string[] split = name.Split(',');
+                        string[] splitL = split[0].Split('(');
+                        string[] splitR = split[1].Split(')');
+                        if (xPosRandom.ToString().Equals(splitL[1]) && yPosRandom.ToString().Equals(splitR[0]))
+                        {
+                            MStructure[] Structures = Floors.transform.GetChild(j).GetComponentsInChildren<MStructure>();
+                            if(Structures.Length != 0)
+                            {
+                                StructureRandom = Random.Range(0, Structures.Length);
+                                isSuccessRandom = true;
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        for (int i=0; i < Floors.transform.childCount; i++)
-        {
-            string name = Floors.transform.GetChild(i).gameObject.name;
-            string[] split = name.Split(',');
-            string[] splitL = split[0].Split('(');
-            string[] splitR = split[1].Split(')');
-            if (xPosRandom.ToString().Equals(splitL[1]) && yPosRandom.ToString().Equals(splitR[0])) 
-            {
-                MStructure[] Structures = Floors.transform.GetChild(i).GetComponentsInChildren<MStructure>();
-                StructureRandom = Random.Range(0, Structures.Length);
-            }
-        }
+        
 
         SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
         item.TargetPos = new int[3] { xPosRandom, yPosRandom, StructureRandom };

@@ -60,8 +60,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 6
-  positionTarget: {fileID: 0}
-  CamAxis: {fileID: 0}
   advancedOptions:
     updateCameraInUpdate: 0
     updateCameraInFixedUpdate: 1
@@ -295,6 +293,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7628333033182702555}
     m_Modifications:
+    - target: {fileID: 943947259914797423, guid: e189309386c20844eac070ea0eb829c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7926989693576759081, guid: e189309386c20844eac070ea0eb829c0,
         type: 3}
       propertyPath: m_Name
@@ -440,6 +443,11 @@ PrefabInstance:
       propertyPath: CarInfo.MaxFuel
       value: 45000
       objectReference: {fileID: 0}
+    - target: {fileID: 594567945548343892, guid: b2054af957002a4439aa50cc180d54b5,
+        type: 3}
+      propertyPath: CarInfo.Acceleration
+      value: 900
+      objectReference: {fileID: 0}
     - target: {fileID: 594567945548343894, guid: b2054af957002a4439aa50cc180d54b5,
         type: 3}
       propertyPath: m_Name
@@ -449,6 +457,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814500822321375992, guid: b2054af957002a4439aa50cc180d54b5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2054af957002a4439aa50cc180d54b5, type: 3}
@@ -534,6 +547,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CamLookAtTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558350738200320660, guid: df3756c8df332f64ea11035567b78dc6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df3756c8df332f64ea11035567b78dc6, type: 3}

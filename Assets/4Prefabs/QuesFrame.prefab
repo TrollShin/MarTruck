@@ -199,8 +199,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC74C\uC2DD\uBB3C \uBC30\uB2EC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 370e53f3fc8440949a8379593478d56d, type: 2}
-  m_sharedMaterial: {fileID: -7683277394041544882, guid: 370e53f3fc8440949a8379593478d56d,
+  m_fontAsset: {fileID: 11400000, guid: fd03a210ec4854f4f8a7be1c2dc589fd, type: 2}
+  m_sharedMaterial: {fileID: 1043953370165385491, guid: fd03a210ec4854f4f8a7be1c2dc589fd,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -75,9 +75,8 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);
         GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
-        Debug.Log(myQuest);
-        Debug.Log(Structure.name);
         Structure.GetComponent<MStructure>().Quest = myQuest;
+
         MinimapMapping(Structure);
 
         QuestInfo.transform.GetChild(0).GetComponent<Text>().text = null;
@@ -99,7 +98,7 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         display.transform.SetParent(DisplayPos);
     }
 
-    private GameObject GetTargetStructure(int xPos, int yPos, int StructureIndex)
+    public static GameObject GetTargetStructure(int xPos, int yPos, int StructureIndex)
     {
         GameObject Floors = GameObject.Find("StructureFloors");
         GameObject Structure = null;
