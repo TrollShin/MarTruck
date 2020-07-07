@@ -66,6 +66,7 @@ public class MCar : MonoBehaviour
     {
         CarInfo.Fuel = CarInfo.MaxFuel;
         audioSource = GetComponent<AudioSource>();
+        //GetComponentInChildren<ParticleSystem>().Stop();
     }
 
     void Start()
