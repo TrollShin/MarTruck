@@ -68,13 +68,16 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     public void AcceptQuest()
     {
         if (CUserInfo.GetInstance().QuestLst.Count >= 3) return;
-
+        
         if (SelectItem == null) return;
 
         SQuest myQuest = SelectItem.GetComponent<MStructure>().Quest;
+        GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
+
+        if (Structure.GetComponent<MStructure>().Quest.Reward > 0) return;
 
         CUserInfo.GetInstance().QuestLst.Add(myQuest);
-        GameObject Structure = GetTargetStructure(myQuest.TargetPos[0], myQuest.TargetPos[1], myQuest.TargetPos[2]);
+        
         Structure.GetComponent<MStructure>().Quest = myQuest;
 
         MinimapMapping(Structure);

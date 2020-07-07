@@ -70,7 +70,8 @@ public class MNPCArea : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, Radius);
+        //Gizmos.DrawWireSphere(transform.position, Radius);
+        Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
     }
 #endif
 }
