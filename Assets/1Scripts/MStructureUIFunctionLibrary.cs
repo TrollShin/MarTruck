@@ -68,7 +68,13 @@ public class MStructureUIFunctionLibrary : MonoBehaviour
                 MGameplayStatic.GetPlayerState().QuestSlotList.UpdateQuestList(CUserInfo.GetInstance().QuestLst);
             }
         }
+        MPopupUI.GetInstance().ShowPopup("마트로 돌아가서 보상을 받으세요.");
         Time.timeScale = 1;
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("StructureUI"));
+    }
+
+    private void OnDestroy()
+    {
+        MStructure.StructEvent -= GetQuest;
     }
 }

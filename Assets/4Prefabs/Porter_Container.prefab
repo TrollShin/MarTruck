@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 594567945548343892}
   - component: {fileID: 594567945548343893}
   - component: {fileID: 8598223323675297447}
+  - component: {fileID: 7778360810813679661}
   m_Layer: 0
   m_Name: Porter_Container
   m_TagString: Car
@@ -506,6 +507,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7778360810813679661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594567945548343894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb17b1f6be414424c9f87cf0007275a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatCheckDelayTime: 0
+  Radius: 0
 --- !u!1001 &552322296641159650
 PrefabInstance:
   m_ObjectHideFlags: 0
