@@ -55,28 +55,31 @@ public class CSaveGame
         }        
     }
 
-    public void Load()
+    public bool LoadUserInfo()
     {
-        LoadControll();
-        LoadSoundInfo();
-        LoadUserInfo();
-    }
+        string UserInfoFilePath = GetFilePath(ESaveFileName.UserInfoSaveData);
+        string QuestsFilePath = GetFilePath(ESaveFileName.CurrentQuestsSaveData);
 
-    private void LoadUserInfo()
-    {
+        if (!CheckFilePath(UserInfoFilePath, QuestsFilePath)) return false;
 
-        CUserInfo tmp = JsonUtility.FromJson<CUserInfo>(File.ReadAllText(GetFilePath(ESaveFileName.UserInfoSaveData)));
+        CUserInfo tmp = JsonUtility.FromJson<CUserInfo>(File.ReadAllText(UserInfoFilePath));
         CUserInfo.GetInstance().Money = tmp.Money;
         CUserInfo.GetInstance().CarLv = tmp.CarLv;
         CUserInfo.GetInstance().StoreLv = tmp.StoreLv;
 
-        List<SQuest> Quests = JsonUtility.FromJson<List<SQuest>>(File.ReadAllText(GetFilePath(ESaveFileName.CurrentQuestsSaveData)));
+        List<SQuest> Quests = JsonUtility.FromJson<List<SQuest>>(File.ReadAllText(QuestsFilePath));
         CUserInfo.GetInstance().QuestLst = Quests;
+
+        return true;
     }
 
-    private void LoadSoundInfo()
-    {        
-        string file = File.ReadAllText(GetFilePath(ESaveFileName.SoundSettingSaveData));
+    public bool LoadSoundInfo()
+    {
+        string SoundInfoFilePath = GetFilePath(ESaveFileName.SoundSettingSaveData);
+
+        if(!CheckFilePath(SoundInfoFilePath)) return false;
+
+        string file = File.ReadAllText(SoundInfoFilePath);
         float[] values = new float[2];
 
         string[] tmp = file.Split(',');
@@ -88,17 +91,37 @@ public class CSaveGame
 
         CSoundManager.GetInstance().BackgroundVolume = values[0];
         CSoundManager.GetInstance().EffectVolume = values[1];
+
+        return true;
     }
 
-    private void LoadControll()
+    public bool LoadControlSetting()
     {
-        CGameInputManager tmp = JsonUtility.FromJson<CGameInputManager>(File.ReadAllText(GetFilePath(ESaveFileName.ControlSettingSaveData)));
+        string ControlSettingFilePath = GetFilePath(ESaveFileName.ControlSettingSaveData);
+
+        if (!CheckFilePath(ControlSettingFilePath)) return false;
+
+        CGameInputManager tmp = JsonUtility.FromJson<CGameInputManager>(File.ReadAllText(ControlSettingFilePath));
         CGameInputManager.GetInstance().MouseReversal = tmp.MouseReversal;
         CGameInputManager.GetInstance().RotationSensitivity = tmp.RotationSensitivity;
+
+        return true;
     }
 
     private string GetFilePath(ESaveFileName _ESaveFileName)
     {
         return string.Format("{0}/{1}.txt", FilePath, _ESaveFileName.ToString());
+    }
+
+    private bool CheckFilePath(params string[] _FilePath)
+    {
+        bool result = false;
+
+        for(int i = 0; i < _FilePath.Length; i++)
+        {
+            result = File.Exists(_FilePath[i]);
+        }
+
+        return result;
     }
 }
