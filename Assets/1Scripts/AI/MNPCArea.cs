@@ -7,6 +7,7 @@ public class MNPCArea : MonoBehaviour
     private List<Transform> ActivedDestinations;// 영역안의 목적지들
     private WaitForSeconds CheckDelayTime;    
     private Coroutine CheckDestinationCoroutine;
+    public bool IsCoroutineStart;
 
     [SerializeField]
     [Tooltip("value 마다 체크함")]
@@ -22,6 +23,13 @@ public class MNPCArea : MonoBehaviour
     {
         ActivedDestinations = new List<Transform>();
         CheckDelayTime = new WaitForSeconds(FloatCheckDelayTime);
+
+        IsCoroutineStart = false;
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine();
     }
 
     private void CheckDestination()
@@ -57,11 +65,14 @@ public class MNPCArea : MonoBehaviour
 
     public void StartCoroutine()
     {
+        if (IsCoroutineStart) return;
+        IsCoroutineStart = true;
         CheckDestinationCoroutine = StartCoroutine(CCheckDestination());
     }
 
     public void StopCoroutine()
     {
+        IsCoroutineStart = false;
         StopCoroutine(CheckDestinationCoroutine);
     }
 
@@ -70,8 +81,8 @@ public class MNPCArea : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, Radius);
-        Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+        Gizmos.DrawWireSphere(transform.position, Radius);
+        //Gizmos.D(transform.position, new Vector3(1, 1, 1));
     }
 #endif
 }

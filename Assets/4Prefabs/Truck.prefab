@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7926989693576759083}
   - component: {fileID: 7926989693576759080}
   - component: {fileID: 6456415037447254933}
+  - component: {fileID: 396148100976506824}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Car
@@ -152,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 7926989693576759081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.19, y: 3.1, z: -4.1968136}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.7}
   m_Children:
   - {fileID: 3132508551617934063}
   - {fileID: 7926989694145450407}
@@ -227,8 +228,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7985964, y: 2.0425699, z: 6.754544}
-  m_Center: {x: -0.014262199, y: 0.69817793, z: -1.1469495}
+  m_Size: {x: 1.7985964, y: 1.8847797, z: 6.4352455}
+  m_Center: {x: -0.014262199, y: 0.61928284, z: -1.1527042}
 --- !u!82 &6456415037447254933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -325,6 +326,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &396148100976506824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926989693576759081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb17b1f6be414424c9f87cf0007275a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatCheckDelayTime: 0
+  Radius: 0
 --- !u!1 &7926989694145450404
 GameObject:
   m_ObjectHideFlags: 0

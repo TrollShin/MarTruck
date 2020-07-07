@@ -5,9 +5,6 @@ using UnityEngine;
 public class MNPCManager : MonoBehaviour
 {
     [SerializeField]
-    private MNPCArea DestinationArea;
-
-    [SerializeField]
     private Transform ParentAgentObject;
 
     [SerializeField]
@@ -17,17 +14,23 @@ public class MNPCManager : MonoBehaviour
 
     private void Start()
     {
-        DestinationArea.StartCoroutine();
-
+        //DestinationArea.StartCoroutine();
         TrafficLightSignal.OnSignalChanged += OnSignalChange;
 
         MNPCWalkers = new MNPCWalker[ParentAgentObject.childCount];
 
-        for (int i = 0; i < MNPCWalkers.Length; i++)
+        for (int i = 0; i < ParentAgentObject.childCount; i++)
         {
             MNPCWalkers[i] = ParentAgentObject.GetChild(i).GetComponent<MNPCWalker>();
             MNPCWalkers[i].OnAgentArrive += ChangeNpcDestination;
         }
+
+        CheckStart();
+    }
+
+    private void CheckStart()
+    {
+        MGameplayStatic.GetPlayerState().CurrentCar.gameObject.GetComponent<MNPCArea>().StartCoroutine();
     }
 
     private void OnDestroy()
@@ -37,17 +40,18 @@ public class MNPCManager : MonoBehaviour
 
     private Transform GetDestination()
     {
-        Transform[] Destinaitons = DestinationArea.GetActivedDestinations();
+        CheckStart();
+        Transform[] Destinaitons = MGameplayStatic.GetPlayerState().CurrentCar.GetComponent<MNPCArea>().GetActivedDestinations();
         return Destinaitons[Random.Range(0, Destinaitons.Length)];
     }
 
     private void ChangeNpcDestination(MNPCWalker _Walker)
     {        
         //NPC가 NPCArea 밖에 있다면 안으로 가지고옴
-        if(Vector3.Distance(_Walker.transform.position, DestinationArea.transform.position) > DestinationArea.Radius)
-        {
-            _Walker.transform.position = GetDestination().position;
-        }
+        //if(Vector3.Distance(_Walker.transform.position, MGameplayStatic.GetPlayerState().CurrentCar.transform.position) > MGameplayStatic.GetPlayerState().CurrentCar.GetComponent<MNPCArea>().Radius)
+        //{
+        //    _Walker.transform.position = GetDestination().position;
+        //}
 
         _Walker.SetDestination(GetDestination(), (Random.Range(0,4)) < 1);
     }

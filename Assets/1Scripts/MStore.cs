@@ -83,17 +83,16 @@ public class MStore : MonoBehaviour
 
     private void CompleteQuest()
     {
-        List<SQuest> QuestList = CUserInfo.GetInstance().QuestLst;
+        List<SQuest> QuestList = CUserInfo.GetInstance().QuestLst.FindAll((Quest) => { return Quest.IsSuccess; });
         for (int i = 0; i < QuestList.Count; i++)
         {
-            if (QuestList[i].IsSuccess)
-            {
-                CUserInfo.GetInstance().Money += QuestList[i].Reward;
-                Destroy(MQuestUIFunctionLibrary.GetTargetStructure(QuestList[i].TargetPos[0], QuestList[i].TargetPos[1], QuestList[i].TargetPos[2]).transform.GetChild(0).gameObject);
-                QuestList.RemoveAt(i);
-                MGameplayStatic.GetPlayerState().QuestSlotList.UpdateQuestList(CUserInfo.GetInstance().QuestLst);
-            }
+            CUserInfo.GetInstance().Money += QuestList[i].Reward;
+            Destroy(MQuestUIFunctionLibrary.GetTargetStructure(QuestList[i].TargetPos[0], QuestList[i].TargetPos[1], QuestList[i].TargetPos[2]).transform.GetChild(0).gameObject);
+
+            MPopupUI.GetInstance().ShowPopup("퀘스트 완료");
         }
+        CUserInfo.GetInstance().QuestLst.RemoveAll((Quest) => { return Quest.IsSuccess; });
+        MGameplayStatic.GetPlayerState().QuestSlotList.UpdateQuestList(CUserInfo.GetInstance().QuestLst);
     }
 
     private void OnTriggerEnter(Collider other)

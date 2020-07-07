@@ -192,7 +192,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8062786011940401382}
   m_HandleRect: {fileID: 1243628695656197294}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 3259948747354694972}
   - component: {fileID: 8782108517212146995}
   - component: {fileID: 8318698300316666064}
+  - component: {fileID: 3155626745801617848}
   - component: {fileID: 6599802031827279855}
   m_Layer: 5
   m_Name: Canvas
@@ -282,6 +283,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &3155626745801617848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670501609751770448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0393d26a035a6cc4ebd4d1c99d021d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PopupUI: {fileID: 4978432237513300782, guid: cb3c4483174fbe249af44bebafa4ce1e, type: 3}
 --- !u!114 &6599802031827279855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,9 +542,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 370e53f3fc8440949a8379593478d56d, type: 2}
-  m_sharedMaterial: {fileID: -7683277394041544882, guid: 370e53f3fc8440949a8379593478d56d,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -899,9 +912,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fuel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 370e53f3fc8440949a8379593478d56d, type: 2}
-  m_sharedMaterial: {fileID: -7683277394041544882, guid: 370e53f3fc8440949a8379593478d56d,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1108,8 +1120,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4890280020566415999}
   m_HandleRect: {fileID: 623117879904249028}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1368,9 +1380,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Money
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 370e53f3fc8440949a8379593478d56d, type: 2}
-  m_sharedMaterial: {fileID: -7683277394041544882, guid: 370e53f3fc8440949a8379593478d56d,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
