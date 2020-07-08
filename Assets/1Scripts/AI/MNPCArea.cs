@@ -25,6 +25,8 @@ public class MNPCArea : MonoBehaviour
         CheckDelayTime = new WaitForSeconds(FloatCheckDelayTime);
 
         IsCoroutineStart = false;
+
+        CheckDestination();
     }
 
     private void OnDisable()

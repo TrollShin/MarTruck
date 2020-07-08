@@ -28,8 +28,9 @@ public class MNPCManager : MonoBehaviour
         CheckStart();
     }
 
-    private void CheckStart()
+    private IEnumerator CheckStart()
     {
+        yield return new WaitForEndOfFrame();
         MGameplayStatic.GetPlayerState().CurrentCar.gameObject.GetComponent<MNPCArea>().StartCoroutine();
     }
 
