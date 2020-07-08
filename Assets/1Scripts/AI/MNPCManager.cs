@@ -46,12 +46,14 @@ public class MNPCManager : MonoBehaviour
     }
 
     private void ChangeNpcDestination(MNPCWalker _Walker)
-    {        
+    {
         //NPC가 NPCArea 밖에 있다면 안으로 가지고옴
-        //if(Vector3.Distance(_Walker.transform.position, MGameplayStatic.GetPlayerState().CurrentCar.transform.position) > MGameplayStatic.GetPlayerState().CurrentCar.GetComponent<MNPCArea>().Radius)
-        //{
-        //    _Walker.transform.position = GetDestination().position;
-        //}
+        if (Vector3.Distance(_Walker.transform.position, MGameplayStatic.GetPlayerState().CurrentCar.transform.position) > MGameplayStatic.GetPlayerState().CurrentCar.GetComponent<MNPCArea>().Radius)
+        {
+            _Walker.gameObject.SetActive(false);
+            _Walker.transform.position = GetDestination().position;
+            _Walker.gameObject.SetActive(true);
+        }
 
         _Walker.SetDestination(GetDestination(), (Random.Range(0,8)) < 1);
     }
