@@ -7,7 +7,7 @@ public class MQuestController
     public delegate void OnAddQuest(SQuest Quest);
     public static OnAddQuest AddEvent;
 
-    private float CreateTime = 1f;
+    private float CreateTime = 10f;
 
     private List<SQuest> AllQuestList = new List<SQuest>();
 
@@ -100,7 +100,7 @@ public class MQuestController
         SQuest item = new SQuest(PossibleQuestList[QuestIndexRandom]);
         item.TargetPos = new int[3] { xPosRandom, yPosRandom, StructureRandom };
         item.IsSuccess = false;
-        item.Reward = Mathf.Abs(xPosRandom) + Mathf.Abs(yPosRandom);
+        item.Reward = Mathf.Abs(xPosRandom) + Mathf.Abs(yPosRandom) + 1 + CUserInfo.GetInstance().StoreLv;
 
         return item;
     }

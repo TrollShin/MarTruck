@@ -63,9 +63,9 @@ public class MStore : MonoBehaviour
     {
         if (CUserInfo.GetInstance().StoreLv >= typeof(EStoreLV).GetEnumValues().Length - 1) return;
 
-        if (CUserInfo.GetInstance().Money >= 5)
+        if (CUserInfo.GetInstance().Money >= 15)
         {
-            CUserInfo.GetInstance().Money -= 5;
+            CUserInfo.GetInstance().Money -= 15;
 
             CUserInfo.GetInstance().StoreLv += 1;
 

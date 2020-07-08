@@ -28,9 +28,9 @@ public class MRepairShop : MonoBehaviour
     {
         if (CUserInfo.GetInstance().CarLv >= typeof(ECarLV).GetEnumValues().Length - 1) return;
 
-        if(CUserInfo.GetInstance().Money >= 5)
+        if(CUserInfo.GetInstance().Money >= 10)
         {
-            CUserInfo.GetInstance().Money -= 5;
+            CUserInfo.GetInstance().Money -= 10;
             RepairEvent();
             MGameplayStatic.GetPlayerState().CurrentCar.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         }

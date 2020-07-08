@@ -50,7 +50,7 @@ public class MNPCWalker : MonoBehaviour
             StopCoroutine(CheckCoroutine);
         }
 
-        Invoke("ReviveAgent", 2f);
+        Invoke("ReviveAgent", 4f);
     }
 
     public void SetDestination(Transform _Transform)
