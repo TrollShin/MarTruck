@@ -53,7 +53,7 @@ public class MNPCManager : MonoBehaviour
         //    _Walker.transform.position = GetDestination().position;
         //}
 
-        _Walker.SetDestination(GetDestination(), (Random.Range(0,4)) < 1);
+        _Walker.SetDestination(GetDestination(), (Random.Range(0,8)) < 1);
     }
 
     //신호는 차량기준
