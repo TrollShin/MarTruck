@@ -36773,6 +36773,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2899119952098885854, guid: 1a509a375987fb04eacff513be876c2c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5044858329420709196, guid: 1a509a375987fb04eacff513be876c2c,
         type: 3}
       propertyPath: m_IsActive
