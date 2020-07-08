@@ -11,7 +11,7 @@ public class MDisplayMoney : MonoBehaviour
     {
         set
         {
-            DisplayText.text = "KRW  " + value.ToString();
+            DisplayText.text = value.ToString() + " KRW";
         }
     }
 
