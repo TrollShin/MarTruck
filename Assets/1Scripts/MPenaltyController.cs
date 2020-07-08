@@ -13,6 +13,7 @@ public class MPenaltyController : MonoBehaviour
         {
             if (IsCanPenalty)
             {
+                collision.gameObject.GetComponent<MNPCWalker>().Disable();
                 StartCoroutine(GetPenalty());
                 //StartCoroutine(CameraShake(.3f, 0.15f));
             }

@@ -14,26 +14,50 @@ public class MNPCWalker : MonoBehaviour
     private WaitForSeconds CheckDelayTime;
     private Coroutine CheckCoroutine;
 
+    private MeshRenderer AgentGFX;
+    private Collider AgentCollider;
+
+    private Vector3 StartPos;
+
     private EAreaMask OriginalyAreaMask;
 
     private bool IsJayWalker;
     
     private void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();        
+        Agent = GetComponent<NavMeshAgent>();
+        StartPos = transform.position;
 
         OriginalyAreaMask = EAreaMask.Walkable;
 
         CheckDelayTime = new WaitForSeconds(2.5f);
 
         CheckCoroutine = StartCoroutine(CheckAgentArrive());
+
+        AgentGFX = transform.GetChild(0).GetComponent<MeshRenderer>();
+        AgentCollider = GetComponent<Collider>();
+
+    }
+
+    public void Disable()
+    {
+        AgentGFX.enabled = false;
+        AgentCollider.enabled = false;
+        transform.position = StartPos;
+
+        if (CheckCoroutine != null)
+        {
+            StopCoroutine(CheckCoroutine);
+        }
+
+        Invoke("ReviveAgent", 2f);
     }
 
     public void SetDestination(Transform _Transform)
     {
         Agent.areaMask = (int)OriginalyAreaMask;
 
-        Agent.SetDestination(_Transform.position);
+        if (Agent.enabled) Agent.SetDestination(_Transform.position);
     }
 
     public void SetDestination(Transform _Transform, bool _IsJaywalker)
@@ -53,7 +77,7 @@ public class MNPCWalker : MonoBehaviour
 
         Agent.areaMask = (int)OriginalyAreaMask;
 
-        Agent.SetDestination(_Transform.position);
+        if(Agent.enabled) Agent.SetDestination(_Transform.position);        
     }
 
     //AreaMask에 대한 정보는 EAreaMask에서
@@ -76,6 +100,16 @@ public class MNPCWalker : MonoBehaviour
         {
             OnAgentArrive?.Invoke(this);            
         }
+
+        CheckCoroutine = StartCoroutine(CheckAgentArrive());
+    }
+
+    private void ReviveAgent()
+    {
+        AgentGFX.enabled = true;
+        AgentCollider.enabled = true;
+
+        OnAgentArrive?.Invoke(this);
 
         CheckCoroutine = StartCoroutine(CheckAgentArrive());
     }
