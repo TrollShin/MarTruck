@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MGameOverFunctionLibrary : MonoBehaviour
@@ -17,6 +18,7 @@ public class MGameOverFunctionLibrary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = .1f; 
         canvasGroup.alpha = 0f;
         StartCoroutine(Fade(canvasGroup, 1f, FadeDuration));
 
@@ -24,10 +26,17 @@ public class MGameOverFunctionLibrary : MonoBehaviour
         DisplayText.text = "";
         StartCoroutine(InvokeFunction(()=>
         {
-            IsFaded = true;
-            CSaveGame.GetInstance().ResetData();
             StartCoroutine(TypeText(DisplayText, content, TypeDelay));
+            SceneManager.UnloadSceneAsync("Main").completed += MGameOverFunctionLibrary_completed; ;
         }, FadeDuration));
+    }
+
+    private void MGameOverFunctionLibrary_completed(AsyncOperation obj)
+    {
+        Time.timeScale = 1f;
+        AudioListener.volume = 1f;
+        IsFaded = true;
+        CSaveGame.GetInstance().ResetData();
     }
 
     IEnumerator InvokeFunction(Action action, float delay)
@@ -43,8 +52,10 @@ public class MGameOverFunctionLibrary : MonoBehaviour
 
         while(elapsed <= duration)
         {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = MapInRange(0f, duration, startAlpha, resultAlpha, elapsed);
+            elapsed += Time.unscaledDeltaTime;
+            float process = MapInRange(0f, duration, startAlpha, resultAlpha, elapsed);
+            AudioListener.volume = 1f - process;
+            canvasGroup.alpha = process;
             yield return new WaitForEndOfFrame();
         }
     }

@@ -19,7 +19,7 @@ public class CSoundManager
         return Instance;
     }
 
-    private float _EffectVolume = 1f;
+    private float _EffectVolume = .5f;
     public float EffectVolume
     {
         get
@@ -32,7 +32,7 @@ public class CSoundManager
         }
     }
 
-    private float _BackgroundVolume = 1f;
+    private float _BackgroundVolume = .5f;
     public float BackgroundVolume
     {
         get
