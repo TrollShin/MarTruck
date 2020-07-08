@@ -14,6 +14,7 @@ public class MPenaltyController : MonoBehaviour
             if (IsCanPenalty)
             {
                 StartCoroutine(GetPenalty());
+                //StartCoroutine(CameraShake(.3f, 0.15f));
             }
         }
     }
@@ -29,4 +30,24 @@ public class MPenaltyController : MonoBehaviour
 
         IsCanPenalty = true;
     }
+
+    /*IEnumerator CameraShake (float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while(elapsed < duration)
+        {
+            float x = Random.Range(-0.1f, 1f) * magnitude;
+            float y = Random.Range(-0.1f, 1f) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, originalPos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        transform.localPosition = originalPos;
+    }*/
 }
