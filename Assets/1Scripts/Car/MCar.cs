@@ -118,8 +118,19 @@ public class MCar : MonoBehaviour
         }
     }
 
+    private void CheckFuelEmpty()
+    {
+        if (CarInfo.Fuel <= 0)
+        {
+            CUserInfo.GetInstance().Money -= 1;
+            CarInfo.Fuel += (CarInfo.MaxFuel * 0.2f);
+        }
+    }
+
     private void FixedUpdate()
     {
+        CheckFuelEmpty();
+
         Angle = CarInfo.MaxAngle * Input.GetAxis("Horizontal");
 
         Torque = GetCarTorque();

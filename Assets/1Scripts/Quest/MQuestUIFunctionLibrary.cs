@@ -25,12 +25,14 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
     private void Awake()
     {
         ScrollViewInit();
-        MQuestController.AddEvent += AddScrollViewItem;
+        MQuestController.AddEvent += ScrollViewInit;
     }
 
     //시작 시 스크롤뷰 셋팅해주는 함수.
     private void ScrollViewInit()
     {
+        Content.transform.DetachChildren();
+
         CPlayerState PlayerState = MGameplayStatic.GetPlayerState();
         if (PlayerState.CurrentQuest != null)
         {
@@ -50,6 +52,11 @@ public class MQuestUIFunctionLibrary : MonoBehaviour
         index.GetComponent<MStructure>().Quest = quest;
         index.transform.SetParent(Content.transform);
         index.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+    }
+
+    public void RemoveAt(int index)
+    {
+        Destroy(transform.GetChild(index).gameObject);
     }
 
     //Quest 클릭시 퀘스트 정보를 띄워주는 함수.(UI)

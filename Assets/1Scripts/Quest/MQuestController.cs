@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MQuestController
 {
-    public delegate void OnAddQuest(SQuest Quest);
+    public delegate void OnAddQuest();
     public static OnAddQuest AddEvent;
 
-    private float CreateTime = 25f;
+    private float CreateTime = 2f;
 
     private List<SQuest> AllQuestList = new List<SQuest>();
 
@@ -37,12 +37,13 @@ public class MQuestController
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(CreateTime);
         while (true)
         {
-            if (MGameplayStatic.GetPlayerState().CurrentQuest.Count < 10)
-            {
-                SQuest RandomQuest = GetRandomQuest(AllQuestList);
+            SQuest RandomQuest = GetRandomQuest(AllQuestList);
 
-                AddQuest(RandomQuest);
+            if (MGameplayStatic.GetPlayerState().CurrentQuest.Count >= 10)
+            {
+                MGameplayStatic.GetPlayerState().CurrentQuest.RemoveAt(0);
             }
+            AddQuest(RandomQuest);
             yield return wait;
         }
     }
@@ -112,7 +113,7 @@ public class MQuestController
         MGameplayStatic.GetPlayerState().CurrentQuest.Add(item);
         if (AddEvent != null)
         {
-            AddEvent(item);
+            AddEvent();
         }
     }
 }
