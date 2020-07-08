@@ -34,6 +34,7 @@ public class MQuestList : MonoBehaviour
         RectTransform rectTransform = GetComponent<RectTransform>();
         VerticalLayoutGroup layoutGroup = GetComponent<VerticalLayoutGroup>();
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y + Obj.GetComponent<RectTransform>().sizeDelta.y + layoutGroup.spacing);
+        Obj.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
 
     public void ClearQuestList()

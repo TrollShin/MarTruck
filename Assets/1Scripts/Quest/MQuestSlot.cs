@@ -20,6 +20,6 @@ public class MQuestSlot : MonoBehaviour
         Title.text = Quest.Name;
         Description.text = Quest.Description;
         IsSuccessed.isOn = Quest.IsSuccess;
-        Reward.text = "KRW  " + Quest.Reward.ToString();
+        Reward.text = Quest.Reward.ToString() + " KRW";
     }
 }
