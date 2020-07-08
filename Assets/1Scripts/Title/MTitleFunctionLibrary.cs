@@ -26,6 +26,11 @@ public class MTitleFunctionLibrary : MonoBehaviour
 
     public void ShowCheckDataDeleteUI()
     {
+        if (CUserInfo.GetInstance().Money == 11 && CUserInfo.GetInstance().StoreLv == 0 && CUserInfo.GetInstance().CarLv == 0)
+        {
+            OnClickNewGame();
+            return;
+        }
         CheckDataDeleteUI.SetActive(true);
     }
 
@@ -36,9 +41,8 @@ public class MTitleFunctionLibrary : MonoBehaviour
 
     public void OnClickNewGame()
     {
-        CSaveGame SaveGame = CSaveGame.GetInstance();
-        CUserInfo UserInfo = CUserInfo.GetInstance();
-        UserInfo = new CUserInfo();
+        CSaveGame SaveGame = CSaveGame.GetInstance();        
+        CUserInfo.GetInstance().Init();
         SaveGame.Save();
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }

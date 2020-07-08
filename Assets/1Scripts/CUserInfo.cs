@@ -42,4 +42,11 @@ public class CUserInfo
             Money -= _Money;
         }
     }
+
+    public void Init()
+    {
+        Money = 11;
+        CarLv = 0;
+        StoreLv = 0;
+    }
 }
