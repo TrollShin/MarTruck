@@ -12318,6 +12318,11 @@ PrefabInstance:
       propertyPath: Radius
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 7033809113912211504, guid: 3f95107a2905f2043bea65ab70cde7f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7628333033182702554, guid: 3f95107a2905f2043bea65ab70cde7f9,
         type: 3}
       propertyPath: m_Name
@@ -12411,7 +12416,7 @@ PrefabInstance:
     - target: {fileID: 7997821993433164892, guid: 3f95107a2905f2043bea65ab70cde7f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f95107a2905f2043bea65ab70cde7f9, type: 3}
@@ -29670,6 +29675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_2_v_10 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2292524192025052277, guid: 577204f591f7d434c8b6fc88e26c2ad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577204f591f7d434c8b6fc88e26c2ad2, type: 3}

@@ -7,7 +7,7 @@ public class MQuestController
     public delegate void OnAddQuest(SQuest Quest);
     public static OnAddQuest AddEvent;
 
-    private float CreateTime = 10f;
+    private float CreateTime = 25f;
 
     private List<SQuest> AllQuestList = new List<SQuest>();
 

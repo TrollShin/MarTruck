@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5772035999497101393}
   - component: {fileID: 5772035999491771729}
   - component: {fileID: 4307758856334333585}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: house_2_v_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
