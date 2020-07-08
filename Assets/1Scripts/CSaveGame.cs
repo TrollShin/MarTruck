@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum ESaveFileName
 {
@@ -115,8 +116,6 @@ public class CSaveGame
         CUserInfo.GetInstance().Money = 11;
 
         Save();
-
-        CSceneFunctionLibrary.LoadTitle();
     }
 
     private string GetFilePath(ESaveFileName _ESaveFileName)

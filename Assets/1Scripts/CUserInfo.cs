@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //필요한거 있으면 추가해 주세요
 public class CUserInfo
@@ -34,7 +35,7 @@ public class CUserInfo
     {
         if(Money < _Money)
         {
-            CSaveGame.GetInstance().ResetData();
+            CSceneFunctionLibrary.LoadSceneSafety("GameOver", (obj) => { SceneManager.SetActiveScene(SceneManager.GetSceneByName("GameOver")); });
         }
         else
         {

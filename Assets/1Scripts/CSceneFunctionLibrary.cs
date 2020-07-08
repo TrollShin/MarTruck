@@ -18,7 +18,7 @@ public class CSceneFunctionLibrary
     /**
         * Remaining Current Scene, Current Scene must have a Camera for overlay target.
         */
-    public static void LoadSceneSafety(string SceneName, Action<AsyncOperation> Completed)
+    public static void LoadSceneSafety(string SceneName, Action<AsyncOperation> Completed = null)
     {
         if (IsSceneLoading(SceneName))
         {
@@ -26,7 +26,10 @@ public class CSceneFunctionLibrary
         }
         if (!SceneManager.GetActiveScene().name.Equals(SceneName))
         {
-            SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive).completed += Completed;
+            if (Completed != null)
+                SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive).completed += Completed;
+            else
+                SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
         }
     }
     public static bool IsSceneLoading(string SceneName)
